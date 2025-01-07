@@ -4,7 +4,7 @@ import {
   parseJWTFromRequest,
   verifyRolesAndPermissions,
 } from "../features/auth/ssrAuth";
-import type { Route } from "./+types/Form";
+import type { Route } from "./+types/Form"
 /* 
   1) This loader runs on the server (and client if navigated to client-side).
      We can inject the home reducer on the server to ensure SSR has the slice. 
