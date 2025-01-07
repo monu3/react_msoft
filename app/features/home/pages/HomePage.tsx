@@ -1,5 +1,6 @@
 import React from "react";
 import SideNavbar from "../components/SideNavbar";
+import { Outlet } from "react-router";
 
 /**
  * This is our HomePage component within the 'home' feature.
@@ -13,7 +14,19 @@ export function HomePage() {
     //   <p className="text-lg mt-4 max-w-xl text-primary">
     //     This is the new HomePage component in our feature-based structure.
     //   </p>
+      // <SideNavbar />
+
+      <div className="flex h-screen">
+      {/* Fixed Sidebar */}
       <SideNavbar />
+
+      {/* Dynamic Content Area */}
+      <div className="flex-grow p-6 overflow-y-auto bg-gray-100">
+        <Outlet />
+      </div>
+    </div>
+
+
     // </main>
   );
 }

@@ -9,6 +9,7 @@ import { VscGitPullRequest } from "react-icons/vsc";
 import { LuPlaneLanding } from "react-icons/lu";
 import { TfiSettings } from "react-icons/tfi";
 import logo from "public/assets/logo.png";
+import { Link } from "react-router";
 
 const SideNavbar = () => {
   return (
@@ -22,17 +23,17 @@ const SideNavbar = () => {
             <img src={logo} alt="Logo" className="h-14 w-auto" />
           </div>
           <div className="flex flex-col gap-8 justify-center text-10xl">
-          <Sidebar.Item href="#" icon={RxDashboard} className="no-underline">
+          <Sidebar.Item as={Link} to="/" icon={RxDashboard} className="no-underline">
             Dashboard
           </Sidebar.Item>
-          <Sidebar.Item href="#" icon={FaIndustry} className="no-underline">
+          <Sidebar.Item as={Link} to="/company"  icon={FaIndustry} className="no-underline">
             company
           </Sidebar.Item>
-          <Sidebar.Item href="#" icon={BsFillAwardFill} className="no-underline">
-            plan
+          <Sidebar.Item as={Link} to="/test" icon={BsFillAwardFill} className="no-underline">
+            Test
           </Sidebar.Item>
-          <Sidebar.Item href="#" icon={VscGitPullRequest} className="no-underline">
-            plan request
+          <Sidebar.Item as={Link} to="/form" icon={VscGitPullRequest} className="no-underline">
+            Form
           </Sidebar.Item>
           <Sidebar.Item href="#" icon={LuPlaneLanding} className="no-underline">
             landing page
