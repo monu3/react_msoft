@@ -1,6 +1,6 @@
-import React from 'react';
-import { Sidebar } from 'flowbite-react';
-import { Link, useLocation } from 'react-router';
+import React from "react";
+import { Sidebar } from "flowbite-react";
+import { NavLink, useLocation } from "react-router";
 
 interface NavItem {
   to: string;
@@ -14,8 +14,21 @@ interface MainNavbarLayoutProps {
   logo?: string;
 }
 
-const MainNavbarLayout: React.FC<MainNavbarLayoutProps> = ({ items, children, logo }) => {
+const MainNavbarLayout: React.FC<MainNavbarLayoutProps> = ({
+  items,
+  children,
+  logo,
+}) => {
   const location = useLocation();
+
+  // Function to determine if the current path matches the item or its child
+  const isActive = (item: NavItem) => {
+    return (
+      location.pathname === item.to ||
+      location.pathname.startsWith(`${item.to}/`)
+    );
+  };
+
   return (
     <div className="flex">
       <Sidebar aria-label="Main navigation" className="h-screen">
@@ -30,17 +43,18 @@ const MainNavbarLayout: React.FC<MainNavbarLayoutProps> = ({ items, children, lo
               {items.map((item) => (
                 <Sidebar.Item
                   key={item.to}
-                  as={Link}
+                  as={NavLink}
                   to={item.to}
                   icon={item.icon}
                   className={`
                     no-underline text-base 
-                    ${location.pathname === item.to 
-                      ? 'bg-pink-500 text-white hover:bg-pink-500 hover:text-white' 
-                      : 'text-gray-600 hover:bg-gray-200 hover:text-gray-900'
+                    ${
+                      isActive(item)
+                        ? "bg-pink-500 text-white hover:bg-pink-500 hover:text-white"
+                        : "text-gray-600 hover:bg-gray-200 hover:text-gray-900"
                     }
                   `}
-                  aria-current={location.pathname === item.to ? 'page' : undefined}
+                  aria-current={isActive(item) ? "page" : undefined}
                 >
                   {item.label}
                 </Sidebar.Item>
@@ -49,9 +63,7 @@ const MainNavbarLayout: React.FC<MainNavbarLayoutProps> = ({ items, children, lo
           </Sidebar.ItemGroup>
         </Sidebar.Items>
       </Sidebar>
-      <div className="flex-1 p-6 overflow-auto">
-        {children}
-      </div>
+      <div className="flex-1 p-6 overflow-auto">{children}</div>
     </div>
   );
 };
