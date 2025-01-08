@@ -1,37 +1,52 @@
-import React from 'react'
-("use SettingBar")
+import React from "react";
+("use SettingBar");
 import { Sidebar } from "flowbite-react";
-import { HiArrowSmRight, HiChartPie, HiInbox, HiShoppingBag, HiTable, HiUser, HiViewBoards } from "react-icons/hi";
+import { Link } from "react-router";
+import { Outlet } from "react-router";
+
+
 const SettingBar = () => {
   return (
+    <>
     <Sidebar aria-label="Default sidebar example">
       <Sidebar.Items>
         <Sidebar.ItemGroup>
-          <Sidebar.Item href="#" >
-            Dashboard
+          <Sidebar.Item as={Link} to="" className="no-underline">
+          Brand Settings
           </Sidebar.Item>
-          <Sidebar.Item href="#" label="Pro" labelColor="dark">
-            Kanban
+          <Sidebar.Item href="#" className="no-underline">
+            Email Settings
           </Sidebar.Item>
-          <Sidebar.Item href="#"  label="3">
-            Inbox
+          <Sidebar.Item href="#" className="no-underline">
+            Pusher Settings
           </Sidebar.Item>
-          <Sidebar.Item href="#" >
-            Users
+          <Sidebar.Item href="#" className="no-underline">
+            Payment Settings
           </Sidebar.Item>
-          <Sidebar.Item href="#" >
-            Products
+          <Sidebar.Item href="#" className="no-underline">
+            ReCaptcha Setting
           </Sidebar.Item>
-          <Sidebar.Item href="#">
-            Sign In
+          <Sidebar.Item href="#" className="no-underline">
+            Storage Setting
           </Sidebar.Item>
-          <Sidebar.Item href="#">
-            Sign Up
+          <Sidebar.Item href="#" className="no-underline">
+            Cache Settings
+          </Sidebar.Item>
+          <Sidebar.Item href="#" className="no-underline">
+            SEO Settings
+          </Sidebar.Item>
+          <Sidebar.Item href="#" className="no-underline">
+            Cookie Settings
+          </Sidebar.Item>
+          <Sidebar.Item href="#" className="no-underline">
+            ChatGpt Settings
           </Sidebar.Item>
         </Sidebar.ItemGroup>
       </Sidebar.Items>
     </Sidebar>
-  )
-}
 
-export default SettingBar
+    </>
+  );
+};
+
+export default SettingBar;
