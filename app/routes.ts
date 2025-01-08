@@ -17,7 +17,7 @@ export default [
       route("topbar", "features/landingPage/components/TopBarForm.tsx"), // Top Bar
       route("customPage", "features/landingPage/components/CustomPageForm.tsx"),
     ]),
-    route("setting","routes/setting.tsx",
+    route("settings","routes/setting.tsx",
     [index("routes/brandSetting.tsx")
     ])
   ]),
