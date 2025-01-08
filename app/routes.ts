@@ -17,8 +17,9 @@ export default [
       route("topbar", "features/landingPage/components/TopBarForm.tsx"), // Top Bar
       route("customPage", "features/landingPage/components/CustomPageForm.tsx"),
     ]),
-    route("settings","routes/setting.tsx",
-    [index("routes/brandSetting.tsx")
+    route("settings","features/setting/pages/SettingBar.tsx",
+    [index("features/setting/components/BrandSetting.tsx"),
+      route("email","features/setting/components/EmailSetting.tsx")
     ])
   ]),
 ] satisfies RouteConfig;
