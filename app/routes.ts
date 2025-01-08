@@ -13,15 +13,9 @@ export default [
     route("test", "routes/test.tsx"), // Test route
     route("form", "routes/Form.tsx"), // Form route
 
-    // route("settings", "features/settings/pages/settingPage.tsx", [
-    //   index("features/settings/component/general.tsx"),
-    //   route("profile", "features/settings/component/profile.tsx"),
-    //   route("security", "features/settings/component/security.tsx"),
-    // ]),
-
-    // route("landingpage", "features/landingPage/pages/mainLandingPage.tsx", [
-    //   index("features/landingPage/components/CustomPageForm.tsx"),
-    //   route("topBar", "features/landingPage/components/topBarForm.tsx"),
-    // ]),
+    route("landingPage", "features/landingPage/pages/LandingPageHome.tsx", [
+      route("topbar", "features/landingPage/components/TopBarForm.tsx"), // Top Bar
+      route("customPage", "features/landingPage/components/CustomPageForm.tsx"),
+    ]),
   ]),
 ] satisfies RouteConfig;
