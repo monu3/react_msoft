@@ -21,5 +21,10 @@ export default [
     route("company", "routes/companyRoute.tsx"), // Company route
     route("test", "routes/test.tsx"), // Test route
     route("form", "routes/Form.tsx"), // Form route
+    // route("landingPage", "routes/landingPageRoute.tsx"), // LandingPage route
+    route("landingPage", "features/landingPage/pages/LandingPageHome.tsx", [
+      route("topbar", "features/landingPage/components/TopBarForm.tsx"), // Top Bar
+      route("customPage", "features/landingPage/components/CustomPageForm.tsx"), // Custom Page
+    ]),
   ]),
 ] satisfies RouteConfig;
