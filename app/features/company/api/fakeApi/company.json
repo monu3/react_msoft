@@ -1,0 +1,11 @@
+{
+  "status": 200,
+  "message": "Success",
+  "data": {
+    "id": 1,
+    "name": "Company 1",
+    "address": "Address 1",
+    "phone": "123456789",
+    "email": "diwash@gmail.com"
+  }
+}
