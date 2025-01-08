@@ -16,7 +16,6 @@ interface MainNavbarLayoutProps {
 
 const MainNavbarLayout: React.FC<MainNavbarLayoutProps> = ({ items, children, logo }) => {
   const location = useLocation();
-
   return (
     <div className="flex">
       <Sidebar aria-label="Main navigation" className="h-screen">
@@ -29,12 +28,18 @@ const MainNavbarLayout: React.FC<MainNavbarLayoutProps> = ({ items, children, lo
             )}
             <div className="flex flex-col gap-2">
               {items.map((item) => (
-                <Sidebar.Item 
-                  key={item.to} 
-                  as={Link} 
-                  to={item.to} 
+                <Sidebar.Item
+                  key={item.to}
+                  as={Link}
+                  to={item.to}
                   icon={item.icon}
-                  className={`no-underline text-base ${location.pathname === item.to ? 'bg-gray-100 text-blue-600' : ''}`}
+                  className={`
+                    no-underline text-base 
+                    ${location.pathname === item.to 
+                      ? 'bg-pink-500 text-white hover:bg-pink-500 hover:text-white' 
+                      : 'text-gray-600 hover:bg-gray-200 hover:text-gray-900'
+                    }
+                  `}
                   aria-current={location.pathname === item.to ? 'page' : undefined}
                 >
                   {item.label}
@@ -44,7 +49,6 @@ const MainNavbarLayout: React.FC<MainNavbarLayoutProps> = ({ items, children, lo
           </Sidebar.ItemGroup>
         </Sidebar.Items>
       </Sidebar>
-
       <div className="flex-1 p-6 overflow-auto">
         {children}
       </div>
@@ -53,4 +57,3 @@ const MainNavbarLayout: React.FC<MainNavbarLayoutProps> = ({ items, children, lo
 };
 
 export default MainNavbarLayout;
-
