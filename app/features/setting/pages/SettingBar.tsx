@@ -4,7 +4,6 @@
 // import { Link } from "react-router";
 // import { Outlet } from "react-router";
 
-
 // const SettingBar = () => {
 //   return (
 //     <>
@@ -51,7 +50,6 @@
 
 // export default SettingBar;
 
-
 import React from "react";
 import { Outlet } from "react-router";
 import NavbarLayout from "../../../common/components/NavbarLayout";
@@ -59,7 +57,7 @@ import BreadcrumbLayouts from "~/common/components/BreadcrumbLayouts";
 import { breadcrumbs } from "~/common/utils/routes/breadcrumbs";
 
 const navItems = [
-  { to: "", label: "Brand Settings" },
+  { to: "brand", label: "Brand Settings" },
   { to: "email", label: "Email Settings" },
   { to: "pusher", label: "Pusher Settings" },
   { to: "payment", label: "Payment Settings" },
@@ -68,7 +66,7 @@ const navItems = [
   { to: "cache", label: "Cache Settings" },
   { to: "seo", label: "SEO Settings" },
   { to: "cookie", label: "Cookie Settings" },
-  { to: "chatgpt", label: "ChatGpt Settings" }
+  { to: "chatgpt", label: "ChatGpt Settings" },
 ];
 
 const SettingsPage: React.FC = () => {
