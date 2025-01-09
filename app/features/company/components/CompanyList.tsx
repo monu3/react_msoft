@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Button, Spinner } from "flowbite-react";
+import { Button, Spinner, Card } from "flowbite-react";
+import { HiPlus, HiMail, HiPhone, HiOfficeBuilding } from "react-icons/hi";
 import AddCompanyModal from "./AddCompanyModal";
 import CompanyDetailModal from "./CompanyDetailModal";
 import type { Company } from "../types/company";
@@ -21,7 +22,7 @@ const CompanyList: React.FC = () => {
       setIsLoading(true);
       const data = await companyService.getAllCompanies();
       setCompanies(data);
-      setError(null); // Clear any previous errors
+      setError(null);
     } catch (err) {
       setError("Error fetching companies. Please try again.");
     } finally {
@@ -82,11 +83,18 @@ const CompanyList: React.FC = () => {
   }
 
   return (
-    <div className="p-6 bg-gray-100 min-h-screen">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold text-gray-800">Company Management</h1>
-        <Button color="success" onClick={() => setIsModalOpen(true)}>
-          + Add Company
+    <div className="p-4 md:p-6 bg-[var(--color-bg)] min-h-screen">
+      <div className="flex flex-col md:flex-row justify-between items-center mb-6">
+        <h1 className="text-2xl md:text-3xl font-bold text-[var(--color-text)] mb-4 md:mb-0">
+          Company Management
+        </h1>
+        <Button
+          color="success"
+          onClick={() => setIsModalOpen(true)}
+          className="w-full md:w-auto"
+        >
+          <HiPlus className="mr-2 h-5 w-5" />
+          Add Company
         </Button>
       </div>
 
@@ -97,25 +105,34 @@ const CompanyList: React.FC = () => {
       )}
 
       {!isLoading && companies.length === 0 ? (
-        <div className="text-center text-gray-600 mt-8">
+        <div className="text-center text-[var(--color-text)] mt-8">
           <p className="text-xl mb-4">No companies found.</p>
           <p>Click the "Add Company" button to create a new company.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {companies.map((company) => (
-            <div
+            <Card
               key={company.companyId}
-              className="p-4 border rounded shadow bg-white hover:shadow-lg transition-shadow cursor-pointer"
+              className="hover:shadow-lg transition-shadow cursor-pointer"
               onClick={() => handleOpenCompanyDetails(company)}
             >
-              <h2 className="text-lg font-semibold text-gray-700">
+              <h2 className="text-lg font-semibold text-[var(--color-text)]">
                 {company.companyName}
               </h2>
-              <p className="text-gray-600">Email: {company.email}</p>
-              <p className="text-gray-600">Phone: {company.phone}</p>
-              <p className="text-gray-600">City: {company.city}</p>
-            </div>
+              <div className="flex items-center text-[var(--color-text)]">
+                <HiMail className="mr-2" />
+                <p>{company.email}</p>
+              </div>
+              <div className="flex items-center text-[var(--color-text)]">
+                <HiPhone className="mr-2" />
+                <p>{company.phone}</p>
+              </div>
+              <div className="flex items-center text-[var(--color-text)]">
+                <HiOfficeBuilding className="mr-2" />
+                <p>{company.city}</p>
+              </div>
+            </Card>
           ))}
         </div>
       )}
