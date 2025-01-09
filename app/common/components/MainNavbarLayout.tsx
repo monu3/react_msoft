@@ -21,7 +21,6 @@ const MainNavbarLayout: React.FC<MainNavbarLayoutProps> = ({
 }) => {
   const location = useLocation();
 
-  // Function to determine if the current path matches the item or its child
   const isActive = (item: NavItem) => {
     return (
       location.pathname === item.to ||
@@ -53,6 +52,7 @@ const MainNavbarLayout: React.FC<MainNavbarLayoutProps> = ({
                         ? "bg-pink-500 text-white hover:bg-pink-500 hover:text-white"
                         : "text-gray-600 hover:bg-gray-200 hover:text-gray-900"
                     }
+                    transition-colors duration-200
                   `}
                   aria-current={isActive(item) ? "page" : undefined}
                 >
@@ -63,7 +63,9 @@ const MainNavbarLayout: React.FC<MainNavbarLayoutProps> = ({
           </Sidebar.ItemGroup>
         </Sidebar.Items>
       </Sidebar>
-      <div className="flex-1 p-6 overflow-auto">{children}</div>
+      <div className="flex-1 p-6 overflow-auto bg-[var(--color-bg)] text-[var(--color-text)]">
+        {children}
+      </div>
     </div>
   );
 };
