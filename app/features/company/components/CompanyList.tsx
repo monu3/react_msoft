@@ -14,14 +14,34 @@ const CompanyList: React.FC = () => {
   const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
 
   useEffect(() => {
+    // Set dummy companies initially
+    const dummyCompanies: Company[] = [
+      {
+        companyId: 1,
+        companyName: "Dummy Company 1",
+        email: "dummy1@example.com",
+        companyPassword: "password123",
+        phone: "123-456-7890",
+        address: "1234 Main St",
+        city: "City1",
+        state: "State1",
+        isCompanyActive: true,
+      },
+    ];
+
+    // Simulate loading the data from backend
+    setCompanies(dummyCompanies);
+
+    // Fetch real companies from backend (assuming the service exists)
     fetchCompanies();
   }, []);
 
   const fetchCompanies = async () => {
     try {
       setIsLoading(true);
+      // Simulate fetching data from an actual backend API
       const data = await companyService.getAllCompanies();
-      setCompanies(data);
+      setCompanies((prevCompanies) => [...prevCompanies, ...data]);
       setError(null);
     } catch (err) {
       setError("Error fetching companies. Please try again.");
@@ -98,11 +118,11 @@ const CompanyList: React.FC = () => {
         </Button>
       </div>
 
-      {error && (
+      {/* {error && (
         <div className="text-center text-red-600 mb-4 p-2 bg-red-100 rounded">
           {error}
         </div>
-      )}
+      )} */}
 
       {!isLoading && companies.length === 0 ? (
         <div className="text-center text-[var(--color-text)] mt-8">
@@ -114,21 +134,21 @@ const CompanyList: React.FC = () => {
           {companies.map((company) => (
             <Card
               key={company.companyId}
-              className="hover:shadow-lg transition-shadow cursor-pointer"
+              className="hover:shadow-lg transition-shadow cursor-pointer bg-[var(--color-card)] dark:bg-[var(--color-card)]"
               onClick={() => handleOpenCompanyDetails(company)}
             >
-              <h2 className="text-lg font-semibold text-[var(--color-text)]">
+              <h2 className="text-lg font-semibold text-[var(--color-text)] dark:text-white">
                 {company.companyName}
               </h2>
-              <div className="flex items-center text-[var(--color-text)]">
+              <div className="flex items-center text-[var(--color-text)] dark:text-white">
                 <HiMail className="mr-2" />
                 <p>{company.email}</p>
               </div>
-              <div className="flex items-center text-[var(--color-text)]">
+              <div className="flex items-center text-[var(--color-text)] dark:text-white">
                 <HiPhone className="mr-2" />
                 <p>{company.phone}</p>
               </div>
-              <div className="flex items-center text-[var(--color-text)]">
+              <div className="flex items-center text-[var(--color-text)] dark:text-white">
                 <HiOfficeBuilding className="mr-2" />
                 <p>{company.city}</p>
               </div>
@@ -157,4 +177,3 @@ const CompanyList: React.FC = () => {
 };
 
 export default CompanyList;
-
