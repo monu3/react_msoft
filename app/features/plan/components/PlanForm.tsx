@@ -1,48 +1,53 @@
 import { Button, Label, TextInput, ToggleSwitch } from "flowbite-react";
 import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
+import type { PlanData } from "../types";
 
-// Define Props for PlanForm
-// Define Props for PlanForm
 interface PlanFormProps {
   onClose: () => void;
-  onSavePlan: (plan: PlanData) => void;  // ✅ Fix: Rename onAddPlan to onSavePlan
-  initialData?: PlanData | null;
+  onAddPlan: (plan: PlanData) => void;
 }
 
-
-// Define PlanData type
-interface PlanData {
-  employees: number;
-  clients: number;
-  duration: number;
-  price: number;
-  storage: number;
-  isEnabled: boolean;
-}
-
-const PlanForm: React.FC<PlanFormProps> = ({ onClose, onSavePlan, initialData }) => {
+export const PlanForm: React.FC<PlanFormProps> = ({ onClose, onAddPlan }) => {
+  const [isEnabled, setIsEnabled] = useState<boolean>(false);
   const [formData, setFormData] = useState<Omit<PlanData, "isEnabled">>({
-    employees: initialData?.employees || 0,
-    clients: initialData?.clients || 0,
-    duration: initialData?.duration || 0,
-    price: initialData?.price || 0,
-    storage: initialData?.storage || 0,
+    name: "",
+    id: "",
+    href: "",
+    priceMonthly: "",
+    description: "",
+    features: [],
   });
-  const [isEnabled, setIsEnabled] = useState<boolean>(initialData?.isEnabled || false);
-  
 
-  // Handle Input Change
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.id]: Number(e.target.value) });
+    const { id, value } = e.target;
+    // Check if the input is numeric or string and handle accordingly
+    setFormData({ ...formData, [id]: id === "id" || id === "priceMonthly" ? Number(value) : value });
+  };
+
+  // Handle adding features
+  const handleAddFeature = () => {
+    const featureInput = formData.href; // Use href as feature input field temporarily
+    if (featureInput.trim()) {
+      setFormData({
+        ...formData,
+        features: [...formData.features, featureInput],
+        href: "", // Reset input field after adding
+      });
+    }
   };
 
   // Handle Form Submission
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    onSavePlan({ ...formData, isEnabled });
+    e.preventDefault(); // Prevent form default submission behavior
+    // Ensure form data is not empty before submitting
+    if (formData.name && formData.id && formData.priceMonthly && formData.description) {
+      onAddPlan({ ...formData, isEnabled });
+      onClose(); // Close the form after submission
+    } else {
+      alert("Please fill out all required fields.");
+    }
   };
-  
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
@@ -59,36 +64,86 @@ const PlanForm: React.FC<PlanFormProps> = ({ onClose, onSavePlan, initialData })
 
         <div className="flex gap-10 mb-2">
           <div className="flex-1">
-            <Label htmlFor="employees" value="Number of Employees" />
-            <TextInput id="employees" type="number" placeholder="Enter employees" required onChange={handleChange} value={formData.employees}/>
+            <Label htmlFor="name" value="Plan Name" />
+            <TextInput
+              id="name"
+              type="text"
+              placeholder="Enter Plan Name"
+              required
+              onChange={handleChange}
+            />
           </div>
 
           <div className="flex-1">
-            <Label htmlFor="clients" value="Number of Clients" />
-            <TextInput id="clients" type="number" placeholder="Enter clients" required onChange={handleChange} value={formData.clients}/>
+            <Label htmlFor="id" value="Id" />
+            <TextInput
+              id="id"
+              type="number"
+              placeholder="Enter id"
+              required
+              onChange={handleChange}
+            />
           </div>
         </div>
 
         <div className="flex gap-10 mb-2">
           <div className="flex-1">
-            <Label htmlFor="duration" value="Duration (in months)" />
-            <TextInput id="duration" type="number" placeholder="Enter duration" required onChange={handleChange} value={formData.duration}/>
+            <Label htmlFor="priceMonthly" value="Price Monthly" />
+            <TextInput
+              id="priceMonthly"
+              type="number"
+              placeholder="Enter price"
+              required
+              onChange={handleChange}
+            />
           </div>
 
           <div className="flex-1">
-            <Label htmlFor="price" value="Price (Rs.)" />
-            <TextInput id="price" type="number" placeholder="Enter price" required onChange={handleChange} value={formData.price}/>
+            <Label htmlFor="description" value="Description" />
+            <TextInput
+              id="description"
+              type="text"
+              placeholder="Enter description"
+              required
+              onChange={handleChange}
+            />
           </div>
         </div>
 
         <div className="mb-2">
-          <Label htmlFor="storage" value="Storage (MB)" />
-          <TextInput id="storage" type="number" placeholder="Enter storage size" required onChange={handleChange} value={formData.storage}/>
+          <Label htmlFor="features" value="Features" />
+          <div className="flex gap-2">
+            <TextInput
+              id="href"
+              type="text"
+              placeholder="Enter feature"
+              value={formData.href}
+              onChange={handleChange}
+            />
+            <Button
+              type="button"
+              onClick={handleAddFeature}
+              className="bg-blue-500 hover:bg-blue-700"
+            >
+              Add Feature
+            </Button>
+          </div>
+          <div className="mt-2">
+            <ul>
+              {formData.features.map((feature, idx) => (
+                <li key={idx}>{feature}</li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         <div className="flex items-center justify-between mt-4 mb-4">
           <Label htmlFor="enable" value="Enable Feature" />
-          <ToggleSwitch id="enable" checked={isEnabled} onChange={(value) => setIsEnabled(value)} />
+          <ToggleSwitch
+            id="enable"
+            checked={isEnabled}
+            onChange={(value) => setIsEnabled(value)}
+          />
         </div>
 
         <Button type="submit" className="bg-orange-500 hover:bg-orange-700 transition-colors">

@@ -1,33 +1,29 @@
 import React from "react";
-import SideNavbar from "../components/SideNavbar";
+import MainNavbarLayout from "../../../common/components/MainNavbarLayout";
 import { Outlet } from "react-router";
+import { RxDashboard } from "react-icons/rx";
+import { FaIndustry } from "react-icons/fa";
+import { BsFillAwardFill } from "react-icons/bs";
+import { VscGitPullRequest } from "react-icons/vsc";
+import { LuPlaneLanding } from "react-icons/lu";
+import { TfiSettings } from "react-icons/tfi";
+import logo from "public/assets/logo.png";
 
-/**
- * This is our HomePage component within the 'home' feature.
- * Eventually, you'll import custom hooks, helpers, and types
- * from the sibling folders (hooks, helpers, types).
- */
+const navItems = [
+  { to: "/", label: "Dashboard", icon: RxDashboard },
+  { to: "/company", label: "Company", icon: FaIndustry },
+  { to: "/plan", label: "Plan", icon: BsFillAwardFill },
+  { to: "/plan-request", label: "Plan Request", icon: VscGitPullRequest },
+  { to: "/landingPage", label: "Landing Page", icon: LuPlaneLanding },
+  { to: "/settings", label: "Settings", icon: TfiSettings },
+];
+
 export function HomePage() {
   return (
-    // <main className="flex bg-bg flex-col items-center  justify-center min-h-screen py-8 px-4">
-    //   <h1 className="text-4xl font-bold text-primary ">Home Feature</h1>
-    //   <p className="text-lg mt-4 max-w-xl text-primary">
-    //     This is the new HomePage component in our feature-based structure.
-    //   </p>
-      // <SideNavbar />
-
-      <div className="flex h-screen">
-      {/* Fixed Sidebar */}
-      <SideNavbar />
-
+    <MainNavbarLayout items={navItems} logo={logo}>
       {/* Dynamic Content Area */}
-      <div className="flex-grow p-6 overflow-y-auto bg-gray-100">
-        <Outlet />
-      </div>
-    </div>
-
-
-    // </main>
+      <Outlet />
+    </MainNavbarLayout>
   );
 }
 

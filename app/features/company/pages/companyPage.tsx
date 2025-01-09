@@ -1,34 +1,15 @@
-
-import React from 'react'
-import Company from '../components/Company'
+import React from "react";
+import Company from "../components/CompanyList";
+import { Breadcrumb } from "flowbite-react";
+import { breadcrumbs } from "~/common/utils/routes/breadcrumbs";
+import BreadcrumbLayouts from "~/common/components/BreadcrumbLayouts";
 
 const companyPage = () => {
   return (
-    <Company/>
-  )
-}
+    <BreadcrumbLayouts breadcrumbItems={breadcrumbs.company}>
+      <Company />
+    </BreadcrumbLayouts>
+  );
+};
 
-export default companyPage
-
-// import React from "react";
-// import SideNavbar from "../components/SideNavbar";
-// import Company from '../components/Compnay';
-
-// /**
-//  * This is our HomePage component within the 'home' feature.
-//  * Eventually, you'll import custom hooks, helpers, and types
-//  * from the sibling folders (hooks, helpers, types).
-//  */
-// export function HomePage() {
-//   return (
-//     // <main className="flex bg-bg flex-col items-center  justify-center min-h-screen py-8 px-4">
-//     //   <h1 className="text-4xl font-bold text-primary ">Home Feature</h1>
-//     //   <p className="text-lg mt-4 max-w-xl text-primary">
-//     //     This is the new HomePage component in our feature-based structure.
-//     //   </p>
-//       <SideNavbar />
-//     // </main>
-//   );
-// }
-
-// export default HomePage;
+export default companyPage;

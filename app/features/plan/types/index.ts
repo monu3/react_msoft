@@ -1,8 +1,10 @@
+// types/index.ts
 export interface PlanData {
-  price: number;
-  duration: number;
-  employees: number;
-  clients: number;
-  storage: number;
-  featureEnabled: boolean;
+  name: string;
+  id: string;
+  href: string;
+  priceMonthly: string;
+  description: string;
+  features: string[];
+  isEnabled: boolean;
 }
