@@ -15,10 +15,10 @@ const SideNavbar = () => {
   return (
     <Sidebar
       aria-label="Sidebar with content separator example"
-      className="h-screen  "
+      className="h-screen"
     >
-      <Sidebar.Items >
-        <Sidebar.ItemGroup >
+      <Sidebar.Items className="list-none">
+        <Sidebar.ItemGroup className="list-none">
           <div >
             <img src={logo} alt="Logo" className="h-14 w-auto" />
           </div>
@@ -27,19 +27,19 @@ const SideNavbar = () => {
             Dashboard
           </Sidebar.Item>
           <Sidebar.Item as={Link} to="/company"  icon={FaIndustry} className="no-underline">
-            company
+            Company
           </Sidebar.Item>
-          <Sidebar.Item as={Link} to="/test" icon={BsFillAwardFill} className="no-underline">
-            Test
+          <Sidebar.Item as={Link} to="/plan" icon={BsFillAwardFill} className="no-underline">
+            Plan
           </Sidebar.Item>
-          <Sidebar.Item as={Link} to="/form" icon={VscGitPullRequest} className="no-underline">
-            Form
+          <Sidebar.Item as={Link} to="/plan-request" icon={VscGitPullRequest} className="no-underline">
+            Plan Request
           </Sidebar.Item>
           <Sidebar.Item href="#" icon={LuPlaneLanding} className="no-underline">
-            landing page
+            Landing page
           </Sidebar.Item>
           <Sidebar.Item href="#" icon={TfiSettings} className="no-underline">
-            setting
+            Setting
           </Sidebar.Item>
           </div>
         </Sidebar.ItemGroup>
