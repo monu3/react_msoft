@@ -10,8 +10,8 @@ export default [
   layout("routes/monuhome.tsx", [
     index("routes/dashboardRoute.tsx"), // Default home route (SSR)
     route("company", "features/company/pages/companyPage.tsx"),
-    route("test", "routes/test.tsx"), // Test route
-    route("form", "routes/Form.tsx"), // Form route
+    route("plan", "features/plan/pages/planPage.tsx"), // Test route
+    route("plan-request", "features/planRequest/components/planRequestDisplay.tsx"), // Form route
 
     route("landingPage", "features/landingPage/pages/LandingPageHome.tsx", [
       route("topbar", "features/landingPage/components/TopBarForm.tsx"), // Top Bar
