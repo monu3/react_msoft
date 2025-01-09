@@ -52,58 +52,58 @@
 
 
 
-import React from "react";
-import MainNavbarLayout from "../../../common/components/MainNavbarLayout";
-import { Sidebar } from "flowbite-react";
-import { Link } from "react-router";
-import { RxDashboard } from "react-icons/rx";
-import { FaIndustry } from "react-icons/fa";
-import { BsFillAwardFill } from "react-icons/bs";
-import { VscGitPullRequest } from "react-icons/vsc";
-import { LuPlaneLanding } from "react-icons/lu";
-import { TfiSettings } from "react-icons/tfi";
-import logo from "public/assets/logo.png";
+// import React from "react";
+// import MainNavbarLayout from "../../../common/components/MainNavbarLayout";
+// import { Sidebar } from "flowbite-react";
+// import { Link } from "react-router";
+// import { RxDashboard } from "react-icons/rx";
+// import { FaIndustry } from "react-icons/fa";
+// import { BsFillAwardFill } from "react-icons/bs";
+// import { VscGitPullRequest } from "react-icons/vsc";
+// import { LuPlaneLanding } from "react-icons/lu";
+// import { TfiSettings } from "react-icons/tfi";
+// import logo from "public/assets/logo.png";
 
-const navItems = [
-  { to: "/", label: "Dashboard", icon: RxDashboard },
-  { to: "/company", label: "Company", icon: FaIndustry },
-  { to: "/plan", label: "Plan", icon: BsFillAwardFill },
-  { to: "/plan-request", label: "Plan Request", icon: VscGitPullRequest },
-  { to: "/landingPage", label: "Landing Page", icon: LuPlaneLanding },
-  { to: "/settings", label: "Settings", icon: TfiSettings },
-];
+// const navItems = [
+//   { to: "/", label: "Dashboard", icon: RxDashboard },
+//   { to: "/company", label: "Company", icon: FaIndustry },
+//   { to: "/test", label: "Test", icon: BsFillAwardFill },
+//   { to: "/form", label: "Form", icon: VscGitPullRequest },
+//   { to: "/landingPage", label: "Landing Page", icon: LuPlaneLanding },
+//   { to: "/settings", label: "Settings", icon: TfiSettings },
+// ];
 
-const SideNavbar: React.FC = () => {
-  return (
-    <MainNavbarLayout items={navItems} logo={logo}>
-      <Sidebar
-        aria-label="Sidebar with content separator example"
-        className="h-screen"
-      >
-        <Sidebar.Items>
-          <Sidebar.ItemGroup>
-            <div>
-              <img src={logo} alt="Logo" className="h-14 w-auto" />
-            </div>
-            <div className="flex flex-col gap-8 justify-center text-10xl">
-              {navItems.map((item) => (
-                <Sidebar.Item
-                  key={item.to}
-                  as={Link}
-                  to={item.to}
-                  icon={item.icon}
-                  className="no-underline "
-                >
-                  {item.label}
-                </Sidebar.Item>
-              ))}
-            </div>
-          </Sidebar.ItemGroup>
-        </Sidebar.Items>
-      </Sidebar>
-    </MainNavbarLayout>
-  );
-};
+// const SideNavbar: React.FC = () => {
+//   return (
+//     <MainNavbarLayout items={navItems} logo={logo}>
+//       <Sidebar
+//         aria-label="Sidebar with content separator example"
+//         className="h-screen"
+//       >
+//         <Sidebar.Items>
+//           <Sidebar.ItemGroup>
+//             <div>
+//               <img src={logo} alt="Logo" className="h-14 w-auto" />
+//             </div>
+//             <div className="flex flex-col gap-8 justify-center text-10xl">
+//               {navItems.map((item) => (
+//                 <Sidebar.Item
+//                   key={item.to}
+//                   as={Link}
+//                   to={item.to}
+//                   icon={item.icon}
+//                   className="no-underline "
+//                 >
+//                   {item.label}
+//                 </Sidebar.Item>
+//               ))}
+//             </div>
+//           </Sidebar.ItemGroup>
+//         </Sidebar.Items>
+//       </Sidebar>
+//     </MainNavbarLayout>
+//   );
+// };
 
-export default SideNavbar;
+// export default SideNavbar;
 
