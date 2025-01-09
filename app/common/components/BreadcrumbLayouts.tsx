@@ -3,7 +3,6 @@
 import React from "react";
 import { Breadcrumb } from "flowbite-react";
 
-
 interface LayoutProps {
   children: React.ReactNode;
   breadcrumbItems: { label: string; href?: string }[];
@@ -11,12 +10,16 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children, breadcrumbItems }) => {
   return (
-    <div className="h-screen flex flex-col">
+    <div className="h-screen flex flex-col bg-[var(--color-bg)] text-[var(--color-text)]">
       {/* Breadcrumb */}
-      <nav className="p-4 bg-gray-100">
-        <Breadcrumb aria-label="Breadcrumb navigation">
+      <nav className="p-4 bg-[var(--color-primary)]">
+        <Breadcrumb aria-label="Breadcrumb navigation" className="text-lg">
           {breadcrumbItems.map((item, index) => (
-            <Breadcrumb.Item key={index} href={item.href} icon={item.href ? undefined : undefined}>
+            <Breadcrumb.Item
+              key={index}
+              href={item.href}
+              className="text-[var(--color-text)]"
+            >
               {item.label}
             </Breadcrumb.Item>
           ))}
