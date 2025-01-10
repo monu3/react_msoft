@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { RiAddBoxFill } from "react-icons/ri";
-import PlanForm from "./PlanForm";
+import { PlanForm } from "./PlanForm";
 import type { PlanData } from "../types";
 
 interface AddPlanProps {
@@ -19,7 +19,14 @@ const AddPlan: React.FC<AddPlanProps> = ({ onAddPlan }) => {
       />
 
       {/* Popup Form */}
-      {isOpen && <PlanForm onClose={() => setIsOpen(false)} onAddPlan={onAddPlan} />}
+      {isOpen && (
+        <PlanForm
+          onClose={() => setIsOpen(false)}
+          onAddPlan={onAddPlan}
+          onEditPlan={() => {}} // Provide a no-op function for onEditPlan
+          existingPlans={[]} // You can pass an empty array here, or an actual list if required
+        />
+      )}
     </div>
   );
 };

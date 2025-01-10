@@ -28,7 +28,7 @@ export default function PlanCard({
     <div
       className={classNames(
         featured ? 'relative bg-gray-900 shadow-2xl' : 'bg-white/60',
-        'rounded-3xl p-6 ring-1 ring-gray-900/10 sm:p-8' // Reduced padding for smaller card
+        'rounded-3xl p-6 ring-1 ring-gray-900/10 sm:p-8 min-h-[250px]' // Reduced padding for smaller card
       )}
     >
       <h3
@@ -53,7 +53,7 @@ export default function PlanCard({
           /month
         </span>
       </p>
-      <p className={classNames(featured ? 'text-gray-300' : 'text-gray-600', 'mt-4 text-sm')}>
+      <p className={classNames(featured ? 'text-gray-300' : 'text-gray-600', 'mt-4 text-sm', 'break-words')}>
         {description} {/* Reduced font size for description */}
       </p>
       <ul

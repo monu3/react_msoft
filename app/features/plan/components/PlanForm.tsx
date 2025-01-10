@@ -1,48 +1,93 @@
-import { Button, Label, TextInput, ToggleSwitch } from "flowbite-react";
-import { useState } from "react";
+import { Alert, Button, Label, TextInput, ToggleSwitch } from "flowbite-react";
+import { useState, useEffect } from "react";
 import { AiOutlineClose } from "react-icons/ai";
+import { nanoid } from "nanoid"; // Import nanoid to generate unique IDs
 import type { PlanData } from "../types";
 
 interface PlanFormProps {
   onClose: () => void;
   onAddPlan: (plan: PlanData) => void;
+  onEditPlan: (plan: PlanData) => void;
+  plan?: PlanData; // Optional prop for editing
+  existingPlans: PlanData[];
 }
 
-export const PlanForm: React.FC<PlanFormProps> = ({ onClose, onAddPlan }) => {
+export const PlanForm: React.FC<PlanFormProps> = ({ onClose, onAddPlan, onEditPlan, plan, existingPlans }) => {
   const [isEnabled, setIsEnabled] = useState<boolean>(false);
-  const [formData, setFormData] = useState<Omit<PlanData, "isEnabled">>({
-    name: "",
-    id: "",
+  const [formData, setFormData] = useState<Omit<PlanData, "isEnabled" | "id">>({
+    name: plan?.name || "",
     href: "",
-    priceMonthly: "",
-    description: "",
-    features: [],
+    priceMonthly: plan?.priceMonthly || "",
+    description: plan?.description || "",
+    features: plan?.features || [],
   });
+  const [error, setError] = useState<string>("");
+
+  useEffect(() => {
+    if (plan) {
+      setFormData({
+        name: plan.name,
+        href: "",
+        priceMonthly: plan.priceMonthly,
+        description: plan.description,
+        features: plan.features || [],
+      });
+      setIsEnabled(plan.isEnabled);
+    }
+  }, [plan]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
-    // Check if the input is numeric or string and handle accordingly
-    setFormData({ ...formData, [id]: id === "id" || id === "priceMonthly" ? Number(value) : value });
+    setFormData({ 
+      ...formData, 
+      [id]: value 
+    });
   };
 
   // Handle adding features
   const handleAddFeature = () => {
-    const featureInput = formData.href; // Use href as feature input field temporarily
-    if (featureInput.trim()) {
+    if (formData.href.trim()) {
       setFormData({
         ...formData,
-        features: [...formData.features, featureInput],
-        href: "", // Reset input field after adding
+        features: [...formData.features, formData.href],
+        href: "", // Reset feature input after adding
       });
     }
   };
 
-  // Handle Form Submission
+  // Handle deleting a feature
+  const handleDeleteFeature = (index: number) => {
+    setFormData({
+      ...formData,
+      features: formData.features.filter((_, i) => i !== index),
+    });
+  };
+
+  const isIdUnique = (id: string) => {
+    return !existingPlans.some((plan) => plan.id === id);
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault(); // Prevent form default submission behavior
-    // Ensure form data is not empty before submitting
-    if (formData.name && formData.id && formData.priceMonthly && formData.description) {
-      onAddPlan({ ...formData, isEnabled });
+    e.preventDefault();
+
+    // Generate a new unique ID for the plan if adding a new plan
+    const newPlanId = plan ? plan.id : nanoid(); // Generate new ID using nanoid
+
+    // Log the form data to check if it's correct
+    console.log('Form submitted with:', { ...formData, id: newPlanId }, isEnabled);
+
+    if (formData.name && formData.priceMonthly && formData.description) {
+      const updatedPlan = { ...formData, id: newPlanId, isEnabled };
+
+      if (plan) {
+        // If editing an existing plan
+        console.log('Editing plan:', updatedPlan);
+        onEditPlan(updatedPlan);
+      } else {
+        // If adding a new plan
+        console.log('Adding new plan:', updatedPlan);
+        onAddPlan(updatedPlan);
+      }
       onClose(); // Close the form after submission
     } else {
       alert("Please fill out all required fields.");
@@ -60,8 +105,11 @@ export const PlanForm: React.FC<PlanFormProps> = ({ onClose, onAddPlan }) => {
           onClick={onClose}
         />
 
-        <h2 className="text-2xl font-semibold text-center mb-4">Add New Plan</h2>
-
+        <h2 className="text-2xl font-semibold text-center mb-4"> {plan ? "Edit Plan" : "Add New Plan"}</h2>
+        
+        {/* Display error message if id is not unique */}
+        {error && <Alert color="failure">{error}</Alert>}
+        
         <div className="flex gap-10 mb-2">
           <div className="flex-1">
             <Label htmlFor="name" value="Plan Name" />
@@ -71,22 +119,9 @@ export const PlanForm: React.FC<PlanFormProps> = ({ onClose, onAddPlan }) => {
               placeholder="Enter Plan Name"
               required
               onChange={handleChange}
+              value={formData.name}
             />
           </div>
-
-          <div className="flex-1">
-            <Label htmlFor="id" value="Id" />
-            <TextInput
-              id="id"
-              type="number"
-              placeholder="Enter id"
-              required
-              onChange={handleChange}
-            />
-          </div>
-        </div>
-
-        <div className="flex gap-10 mb-2">
           <div className="flex-1">
             <Label htmlFor="priceMonthly" value="Price Monthly" />
             <TextInput
@@ -95,8 +130,13 @@ export const PlanForm: React.FC<PlanFormProps> = ({ onClose, onAddPlan }) => {
               placeholder="Enter price"
               required
               onChange={handleChange}
+              value={formData.priceMonthly}
             />
           </div>
+        </div>
+
+        <div className="flex gap-10 mb-2">
+     
 
           <div className="flex-1">
             <Label htmlFor="description" value="Description" />
@@ -106,6 +146,7 @@ export const PlanForm: React.FC<PlanFormProps> = ({ onClose, onAddPlan }) => {
               placeholder="Enter description"
               required
               onChange={handleChange}
+              value={formData.description}
             />
           </div>
         </div>
@@ -125,13 +166,22 @@ export const PlanForm: React.FC<PlanFormProps> = ({ onClose, onAddPlan }) => {
               onClick={handleAddFeature}
               className="bg-blue-500 hover:bg-blue-700"
             >
-              Add Feature
+              {plan ? "Save Changes" : "Submit"}
             </Button>
           </div>
           <div className="mt-2">
             <ul>
               {formData.features.map((feature, idx) => (
-                <li key={idx}>{feature}</li>
+                <li key={idx} className="flex justify-between items-center">
+                  {feature}
+                  <Button
+                    type="button"
+                    onClick={() => handleDeleteFeature(idx)}
+                    className="text-red-500 ml-2"
+                  >
+                    Delete
+                  </Button>
+                </li>
               ))}
             </ul>
           </div>
@@ -147,7 +197,7 @@ export const PlanForm: React.FC<PlanFormProps> = ({ onClose, onAddPlan }) => {
         </div>
 
         <Button type="submit" className="bg-orange-500 hover:bg-orange-700 transition-colors">
-          Submit
+          {plan ? "Save Changes" : "Submit"}
         </Button>
       </form>
     </div>

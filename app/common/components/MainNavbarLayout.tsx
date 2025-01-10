@@ -30,7 +30,7 @@ const MainNavbarLayout: React.FC<MainNavbarLayoutProps> = ({
 
   return (
     <div className="flex">
-      <Sidebar aria-label="Main navigation" className="h-screen">
+      <Sidebar aria-label="Main navigation" className="h-screen fixed top-0 left-0 z-10 w-64">
         <Sidebar.Items>
           <Sidebar.ItemGroup>
             {logo && (
@@ -63,7 +63,7 @@ const MainNavbarLayout: React.FC<MainNavbarLayoutProps> = ({
           </Sidebar.ItemGroup>
         </Sidebar.Items>
       </Sidebar>
-      <div className="flex-1 p-6 overflow-auto bg-[var(--color-bg)] text-[var(--color-text)]">
+      <div className="flex-1 p-6 overflow-auto bg-[var(--color-bg)] text-[var(--color-text)] ml-64">
         {children}
       </div>
     </div>
