@@ -39,7 +39,7 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
     <Modal show={true} size="md" popup={true} onClose={onClose}>
       <Modal.Header />
       <Modal.Body>
-        <h3 className="text-xl font-medium text-gray-900 mb-4">
+        <h3 className="text-xl font-medium text-[var(--text-color)] mb-4">
           Company Details
         </h3>
         <form>
@@ -51,6 +51,7 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
               value={editedCompany.companyName}
               onChange={handleEditChange}
               readOnly={!isEditing}
+              className={`bg-[var(--color-card)] text-[var(--text-color)]`}
             />
           </div>
           <div className="mb-4">
@@ -62,6 +63,7 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
               value={editedCompany.email}
               onChange={handleEditChange}
               readOnly={!isEditing}
+              className={`bg-[var(--color-card)] text-[var(--text-color)]`}
             />
           </div>
           <div className="mb-4">
@@ -72,6 +74,7 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
               value={editedCompany.phone}
               onChange={handleEditChange}
               readOnly={!isEditing}
+              className={`bg-[var(--color-card)] text-[var(--text-color)]`}
             />
           </div>
           <div className="mb-4">
@@ -82,6 +85,7 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
               value={editedCompany.address}
               onChange={handleEditChange}
               readOnly={!isEditing}
+              className={`bg-[var(--color-card)] text-[var(--text-color)]`}
             />
           </div>
           <div className="mb-4">
@@ -92,6 +96,7 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
               value={editedCompany.city}
               onChange={handleEditChange}
               readOnly={!isEditing}
+              className={`bg-[var(--color-card)] text-[var(--text-color)]`}
             />
           </div>
           <div className="mb-4">
@@ -102,6 +107,7 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
               value={editedCompany.state}
               onChange={handleEditChange}
               readOnly={!isEditing}
+              className={`bg-[var(--color-card)] text-[var(--text-color)]`}
             />
           </div>
           {isEditing && (
@@ -117,6 +123,7 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
                     isCompanyActive: checked,
                   }))
                 }
+                className={`bg-[var(--hover-bg-color)]`}
               />
             </div>
           )}

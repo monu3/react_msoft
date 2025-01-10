@@ -12,8 +12,8 @@ import logo from "public/assets/logo.png";
 const navItems = [
   { to: "/", label: "Dashboard", icon: RxDashboard },
   { to: "/company", label: "Company", icon: FaIndustry },
-  { to: "/test", label: "Test", icon: BsFillAwardFill },
-  { to: "/form", label: "Form", icon: VscGitPullRequest },
+  { to: "/plan", label: "Plan", icon: BsFillAwardFill },
+  { to: "/plan-request", label: "Plan Request", icon: VscGitPullRequest },
   { to: "/landingPage", label: "Landing Page", icon: LuPlaneLanding },
   { to: "/settings", label: "Settings", icon: TfiSettings },
 ];

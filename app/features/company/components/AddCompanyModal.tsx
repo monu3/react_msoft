@@ -40,15 +40,16 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({
   };
 
   return (
-    <Modal show={true} size="md" popup={true} onClose={onClose}>
-      <Modal.Header />
+    <Modal show={true} size="md" onClose={onClose}>
+      <Modal.Header className="border-b">
+        <h3 className="text-xl font-semibold ">Add New Company</h3>
+      </Modal.Header>
       <Modal.Body>
-        <h3 className="text-xl font-medium text-gray-900 mb-4">
-          Add New Company
-        </h3>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <Label htmlFor="companyName" value="Company Name" />
+        <form onSubmit={handleSubmit} className="space-y-2">
+          <div>
+            <Label htmlFor="companyName" className="mb-2 block">
+              Company Name
+            </Label>
             <TextInput
               id="companyName"
               name="companyName"
@@ -58,8 +59,10 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({
               required
             />
           </div>
-          <div className="mb-4">
-            <Label htmlFor="email" value="Company Email" />
+          <div>
+            <Label htmlFor="email" className="mb-2 block">
+              Company Email
+            </Label>
             <TextInput
               type="email"
               id="email"
@@ -70,8 +73,10 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({
               required
             />
           </div>
-          <div className="mb-4">
-            <Label htmlFor="companyPassword" value="Password" />
+          <div>
+            <Label htmlFor="companyPassword" className="mb-2 block">
+              Password
+            </Label>
             <TextInput
               type="password"
               id="companyPassword"
@@ -82,8 +87,10 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({
               required
             />
           </div>
-          <div className="mb-4">
-            <Label htmlFor="phone" value="Phone" />
+          <div>
+            <Label htmlFor="phone" className="mb-2 block">
+              Phone
+            </Label>
             <TextInput
               id="phone"
               name="phone"
@@ -93,8 +100,10 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({
               required
             />
           </div>
-          <div className="mb-4">
-            <Label htmlFor="address" value="Address" />
+          <div>
+            <Label htmlFor="address" className="mb-2 block">
+              Address
+            </Label>
             <TextInput
               id="address"
               name="address"
@@ -104,34 +113,46 @@ const AddCompanyModal: React.FC<AddCompanyModalProps> = ({
               required
             />
           </div>
-          <div className="mb-4">
-            <Label htmlFor="city" value="City" />
-            <TextInput
-              id="city"
-              name="city"
-              value={formData.city}
-              onChange={handleChange}
-              placeholder="Enter city"
-              required
-            />
+          <div className="grid grid-cols-2 gap-7">
+            <div>
+              <Label htmlFor="city" className="mb-2 block">
+                City
+              </Label>
+              <TextInput
+                id="city"
+                name="city"
+                value={formData.city}
+                onChange={handleChange}
+                placeholder="Enter city"
+                required
+              />
+            </div>
+            <div>
+              <Label htmlFor="state" className="mb-2 block">
+                State
+              </Label>
+              <TextInput
+                id="state"
+                name="state"
+                value={formData.state}
+                onChange={handleChange}
+                placeholder="Enter state"
+                required
+              />
+            </div>
           </div>
-          <div className="mb-4">
-            <Label htmlFor="state" value="State" />
-            <TextInput
-              id="state"
-              name="state"
-              value={formData.state}
-              onChange={handleChange}
-              placeholder="Enter state"
-              required
-            />
-          </div>
-          <div className="flex justify-end gap-4">
-            <Button color="gray" onClick={onClose}>
+          <div className="flex justify-end gap-4 pt-4">
+            <Button color="light" onClick={onClose}>
               Cancel
             </Button>
-            <Button type="submit" color="success">
-              Add Company
+            <Button
+              type="submit"
+              style={{
+                backgroundColor: "var(--color-primary)",
+                color: "white",
+              }}
+            >
+              Save Changes
             </Button>
           </div>
         </form>
