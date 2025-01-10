@@ -4,6 +4,7 @@ import tailwindcss from "tailwindcss";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 import path from "path";
+import path from "path";
 
 export default defineConfig({
   css: {
@@ -12,9 +13,9 @@ export default defineConfig({
     },
   },
   plugins: [reactRouter(), tsconfigPaths()],
-  // resolve: {
-  //   alias: {
-  //     "~": path.resolve(__dirname, "src"),
-  //   },
-  // },
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./app"),
+    },
+  },
 });
