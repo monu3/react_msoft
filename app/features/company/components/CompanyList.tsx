@@ -27,6 +27,28 @@ const CompanyList: React.FC = () => {
         state: "State1",
         isCompanyActive: true,
       },
+      {
+        companyId: 1,
+        companyName: "Dummy Company 1",
+        email: "dummy1@example.com",
+        companyPassword: "password123",
+        phone: "123-456-7890",
+        address: "1234 Main St",
+        city: "City1",
+        state: "State1",
+        isCompanyActive: true,
+      },
+      {
+        companyId: 1,
+        companyName: "Dummy Company 1",
+        email: "dummy1@example.com",
+        companyPassword: "password123",
+        phone: "123-456-7890",
+        address: "1234 Main St",
+        city: "City1",
+        state: "State1",
+        isCompanyActive: true,
+      },
     ];
 
     // Simulate loading the data from backend
@@ -130,7 +152,7 @@ const CompanyList: React.FC = () => {
           <p>Click the "Add Company" button to create a new company.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {companies.map((company) => (
             <Card
               key={company.companyId}

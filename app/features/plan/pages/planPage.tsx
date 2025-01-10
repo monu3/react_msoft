@@ -3,6 +3,8 @@ import AddPlan from '../components/AddPlan';
 import PlanCard from '~/common/components/PlanCardLayout';
 import { RiEditFill, RiDeleteBin5Fill } from 'react-icons/ri'; // Icons for edit and delete
 import type { PlanData } from '../types';
+import BreadcrumbLayouts from '~/common/components/BreadcrumbLayouts';
+import { breadcrumbs } from '~/common/utils/routes/breadcrumbs';
 import { PlanForm } from '../components/PlanForm'; // Import the PlanForm component
 
 interface PlansProps {
@@ -51,6 +53,7 @@ const PlanPage: React.FC<PlansProps> = ({ plans = [] }) => {
   };
 
   return (
+    <BreadcrumbLayouts breadcrumbItems={breadcrumbs.planRequest}>
     <div>
       <div className="flex justify-end">
         <AddPlan onAddPlan={handleAddPlan} />
@@ -101,6 +104,7 @@ const PlanPage: React.FC<PlansProps> = ({ plans = [] }) => {
         </div>
       </div>
     </div>
+    </BreadcrumbLayouts>
   );
 };
 
