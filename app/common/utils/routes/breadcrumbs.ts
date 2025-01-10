@@ -1,6 +1,3 @@
-import { Label } from "flowbite-react";
-import type Dashboard from "~/features/dashboard/components/Dashboard";
-
 export const breadcrumbs = {
   Dashboard: [{ label: "Dashboard", href: "/" }],
   landingPage: [{ label: "Dashboard", href: "/" }, { label: "Landing Page" }],
@@ -12,5 +9,13 @@ export const breadcrumbs = {
     brandsetting:[
       {label: "Dashboard", href: "/" },
       { label: "BrandSetting", href: "/" }
-    ]
+    ],
+    planRequest: [
+      { label: "Dashboard", href: "/" },
+       { label: "Plan Reques" }
+      ],
+  planCard: [
+    { label: "Dashboard", href: "/" },
+     { label: "Plans" }
+    ],
 };

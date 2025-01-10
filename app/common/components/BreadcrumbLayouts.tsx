@@ -27,7 +27,7 @@ const Layout: React.FC<LayoutProps> = ({ children, breadcrumbItems }) => {
       </nav>
 
       {/* Main Content */}
-      <main className="flex-grow p-6">{children}</main>
+      <main className="flex-grow mt-3">{children}</main>
     </div>
   );
 };
