@@ -20,7 +20,11 @@ export default [
     route("settings", "features/setting/pages/SettingBar.tsx", [
       route("brand", "features/setting/components/BrandSetting.tsx"),
       route("email", "features/setting/components/EmailSetting.tsx"),
-      route("pusher","features/setting/components/PusherSettings.tsx")
+      route("pusher","features/setting/components/PusherSettings.tsx"),
+      route("payment","features/setting/components/PaymentSetting.tsx"),
+      route("recaptcha","features/setting/components/ReCaptchaSetting.tsx"),
+      route("storage","features/setting/components/StorageSetting.tsx"),
+      
     ]),
   ]),
 ] satisfies RouteConfig;

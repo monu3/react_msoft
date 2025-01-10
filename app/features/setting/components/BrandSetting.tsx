@@ -149,7 +149,7 @@
 // }
 
 // export default BrandSetting
-import { Button, Dropdown } from "flowbite-react";
+import { Button, Dropdown, ToggleSwitch } from "flowbite-react";
 import React, { useState } from "react";
 import {
   FormContainer,
@@ -167,7 +167,6 @@ import {
 const BrandSetting = () => {
   // const [selectedLogo, setSelectedLogo] = useState<string>();
   const [selectedLogo, setSelectedLogo] = useState<string | null>(null);
-
   const handleFileSelect = (file: File) => {
     const reader = new FileReader();
     reader.onload = (e) => {
