@@ -5,11 +5,9 @@ import { ScreenshotsSection } from "~/features/landingPage/components/sections/s
 import { PricingSection } from "~/features/landingPage/components/sections/pricing-section";
 import { FAQSection } from "~/features/landingPage/components/sections/faq-section";
 import { TestimonialsSection } from "~/features/landingPage/components/sections/testimonials-section";
-import { ScrollArea } from "@/components/ui/scroll-area";
 
 export default function LandingPage() {
   return (
-    <ScrollArea className="h-screen">
       <main className="min-h-screen">
         <HomeSection />
         <FeaturesSection />
@@ -19,6 +17,5 @@ export default function LandingPage() {
         <FAQSection />
         <TestimonialsSection />
       </main>
-    </ScrollArea>
   );
 }
