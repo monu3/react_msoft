@@ -2,13 +2,83 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { LuEye, LuEyeOff } from "react-icons/lu";
 import Page from "../page";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import HomeSectionAdmin from "./home-section/page";
+import FeaturesAdmin from "./features/page";
+import ScreenshotsAdmin from "./screenshots/page";
+import PricingAdmin from "./pricing/page";
+import FAQAdmin from "./faq/page";
+import TestimonialsAdmin from "./testimonials/page";
+
+// Define section configuration
+const SECTIONS = [
+  {
+    id: 'preview',
+    title: 'Landing Page Preview',
+    description: "Preview how your landing page looks to visitors.",
+    component: Page,
+    buttonText: 'Preview Landing Page',
+    maxWidth: '7xl',
+    icon: LuEye,
+    iconClosed: LuEyeOff
+  },
+  {
+    id: 'home',
+    title: 'Home Section',
+    description: "Manage your landing page's hero section content.",
+    component: HomeSectionAdmin,
+    buttonText: 'Edit Home Section',
+    maxWidth: '4xl'
+  },
+  {
+    id: 'features',
+    title: 'Features',
+    description: 'Add or edit product features.',
+    component: FeaturesAdmin,
+    buttonText: 'Manage Features',
+    maxWidth: '4xl'
+  },
+  {
+    id: 'screenshots',
+    title: 'Screenshots',
+    description: 'Upload and manage product screenshots.',
+    component: ScreenshotsAdmin,
+    buttonText: 'Manage Screenshots',
+    maxWidth: '4xl'
+  },
+  {
+    id: 'pricing',
+    title: 'Pricing Plans',
+    description: 'Configure your pricing plans and features.',
+    component: PricingAdmin,
+    buttonText: 'Manage Pricing',
+    maxWidth: '4xl'
+  },
+  {
+    id: 'faq',
+    title: 'FAQ',
+    description: 'Add or edit frequently asked questions.',
+    component: FAQAdmin,
+    buttonText: 'Manage FAQ',
+    maxWidth: '2xl'
+  },
+  {
+    id: 'testimonials',
+    title: 'Testimonials',
+    description: 'Manage customer testimonials and reviews.',
+    component: TestimonialsAdmin,
+    buttonText: 'Manage Testimonials',
+    maxWidth: '2xl'
+  }
+] as const;
 
 export default function AdminDashboard() {
-  const handleNavigation = (path: string) => {
-    window.history.pushState({}, "", path);
-  };
-
-  const [isPageOpen, setIsPageOpen] = useState(false);
+  const [openSection, setOpenSection] = useState<string | null>(null);
 
   return (
     <div className="p-6">
@@ -18,13 +88,12 @@ export default function AdminDashboard() {
         </h1>
         <Button
           color="success"
-          onClick={() => setIsPageOpen((prev) => !prev)}
+          onClick={() => setOpenSection(openSection === 'preview' ? null : 'preview')}
           className="w-full md:w-auto"
         >
-          {isPageOpen ? (
+          {openSection === 'preview' ? (
             <>
-              <LuEyeOff className="mr-2 h-5 w-5" />{" "}
-              {/* Added LuEyeOff for Close Preview */}
+              <LuEyeOff className="mr-2 h-5 w-5" />
               Close Preview
             </>
           ) : (
@@ -35,69 +104,40 @@ export default function AdminDashboard() {
           )}
         </Button>
       </div>
+
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <div className="p-6 bg-muted rounded-lg">
-          <h2 className="text-xl font-semibold mb-4">Home Section</h2>
-          <p className="text-muted-foreground mb-4">
-            Manage your landing page's hero section content.
-          </p>
-          <Button onClick={() => handleNavigation("landing-page/home-section")}>
-            Edit Home Section
-          </Button>
-        </div>
-
-        <div className="p-6 bg-muted rounded-lg">
-          <h2 className="text-xl font-semibold mb-4">Features</h2>
-          <p className="text-muted-foreground mb-4">
-            Add or edit product features.
-          </p>
-          <Button onClick={() => handleNavigation("landing-page/features")}>
-            manage features
-          </Button>
-        </div>
-
-        <div className="p-6 bg-muted rounded-lg">
-          <h2 className="text-xl font-semibold mb-4">Screenshots</h2>
-          <p className="text-muted-foreground mb-4">
-            Upload and manage product screenshots.
-          </p>
-          <Button onClick={() => handleNavigation("landing-page/screenshots")}>
-            Manage Screenshots
-          </Button>
-        </div>
-
-        <div className="p-6 bg-muted rounded-lg">
-          <h2 className="text-xl font-semibold mb-4">Pricing Plans</h2>
-          <p className="text-muted-foreground mb-4">
-            Configure your pricing plans and features.
-          </p>
-          <Button onClick={() => handleNavigation("landing-page/pricing")}>
-            Manage Pricing
-          </Button>
-        </div>
-
-        <div className="p-6 bg-muted rounded-lg">
-          <h2 className="text-xl font-semibold mb-4">FAQ</h2>
-          <p className="text-muted-foreground mb-4">
-            Add or edit frequently asked questions.
-          </p>
-          <Button onClick={() => handleNavigation("landing-page/faq")}>
-            Manage FAQ
-          </Button>
-        </div>
-
-        <div className="p-6 bg-muted rounded-lg">
-          <h2 className="text-xl font-semibold mb-4">Testimonials</h2>
-          <p className="text-muted-foreground mb-4">
-            Manage customer testimonials and reviews.
-          </p>
-          <Button onClick={() => handleNavigation("landing-page/testimonials")}>
-            Manage Testimonials
-          </Button>
-        </div>
+        {SECTIONS.slice(1).map(section => (
+          <div key={section.id} className="p-6 bg-muted rounded-lg">
+            <h2 className="text-xl font-semibold mb-4">{section.title}</h2>
+            <p className="text-muted-foreground mb-4">{section.description}</p>
+            <Button onClick={() => setOpenSection(section.id)}>
+              {section.buttonText}
+            </Button>
+          </div>
+        ))}
       </div>
 
-      {isPageOpen && <Page />}
+      {SECTIONS.map(section => {
+        const SectionComponent = section.component;
+        const isPreview = section.id === 'preview';
+        
+        return (
+          <Dialog
+            key={section.id}
+            open={openSection === section.id}
+            onOpenChange={(open) => setOpenSection(open ? section.id : null)}
+          >
+            <DialogContent className={`max-w-${section.maxWidth} ${isPreview ? 'h-[90vh]' : ''}`}>
+              <DialogHeader>
+                <DialogTitle>{section.title}</DialogTitle>
+              </DialogHeader>
+              <div className={isPreview ? 'overflow-auto h-full' : ''}>
+                <SectionComponent />
+              </div>
+            </DialogContent>
+          </Dialog>
+        );
+      })}
     </div>
   );
 }

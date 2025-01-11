@@ -27,7 +27,7 @@ export default [
     ]),
   ]),
 
-  route("layout", "features/landingPage/admin/landing-page/Layout.tsx"),
+  // route("layout", "features/landingPage/admin/landing-page/Layout.tsx"),
   route(
     "landing-page/home-section",
     "features/landingPage/admin/landing-page/home-section/page.tsx"
