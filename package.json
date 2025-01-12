@@ -18,6 +18,7 @@
     "flowbite-react": "^0.10.2",
     "isbot": "^5.1.17",
     "jose": "^5.9.6",
+    "lucide-react": "^0.470.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-redux": "^9.2.0",
