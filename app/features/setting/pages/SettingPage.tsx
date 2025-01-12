@@ -24,81 +24,81 @@ const SECTIONS = [
   {
     id: 'brand',
     title: 'Brand Setting',
-    description: "Manage your landing page's hero section content.",
+    description: "Manage your brand settings",
     component: BrandSetting,
-    buttonText: 'Edit Home Section',
+    buttonText: 'Edit the brands',
     maxWidth: '4xl'
   },
   {
     id: 'email',
     title: 'Email Setting',
-    description: 'Add or edit product features.',
+    description: 'Add or edit Email.',
     component: EmailSettingsForm,
-    buttonText: 'Manage Features',
+    buttonText: 'Manage Email Setting',
     maxWidth: '4xl'
   },
   {
     id: 'pusher',
     title: 'Pusher Settings',
-    description: 'Upload and manage product screenshots.',
+    description: 'Change the pusher setting',
     component: PusherSettings,
-    buttonText: 'Manage Screenshots',
+    buttonText: 'Manage Pusher',
     maxWidth: '4xl'
   },
   {
     id: 'payment',
     title: 'Payment Setting',
-    description: 'Configure your pricing plans and features.',
+    description: 'Configure your payment method',
     component: PaymentSetting,
-    buttonText: 'Manage Pricing',
+    buttonText: 'Manage Payment Method',
     maxWidth: '4xl'
   },
   {
     id: 'ReCaptcha',
     title: 'ReCaptcha Setting',
-    description: 'Add or edit frequently asked questions.',
+    description: 'Add or edit ReCaptcha',
     component: ReCaptchaSetting,
-    buttonText: 'Manage FAQ',
+    buttonText: 'Manage ReCaptcha',
     maxWidth: '2xl'
   },
   {
     id: 'storage',
     title: 'Storage Setting',
-    description: 'Manage customer testimonials and reviews.',
+    description: 'Manage your storage types',
     component: StorageSettings,
-    buttonText: 'Manage Testimonials',
+    buttonText: 'Manage Storage',
     maxWidth: '2xl'
   },
   {
     id: 'cache',
     title: 'Cache Setting',
-    description: 'Manage customer testimonials and reviews.',
+    description: 'Manage Cache info',
     component: CacheSettings,
-    buttonText: 'Manage Testimonials',
+    buttonText: 'Manage Cache',
     maxWidth: '2xl'
   },
   {
     id: 'seo',
     title: 'SEO Setting',
-    description: 'Manage customer testimonials and reviews.',
+    description: 'Manage Search Engine Optimization.',
     component: SeoSetting,
-    buttonText: 'Manage Testimonials',
+    buttonText: 'Manage SEO',
     maxWidth: '2xl'
   },
   {
     id: 'cookie',
     title: 'Cookie Setting',
-    description: 'Manage customer testimonials and reviews.',
+    description: 'Manage Cookie for site',
     component: CookieSetting,
-    buttonText: 'Manage Testimonials',
+    buttonText: 'Manage Cookie',
     maxWidth: '2xl'
   },
   {
     id: 'chatGpt',
     title: 'ChatGPT Setting',
-    description: 'Manage customer testimonials and reviews.',
+    description: 'Manage ChatGpt Key and Model.',
     component: ChatGptSetting,
-    buttonText: 'Manage Testimonials',
+    buttonText: 'Manage ChatGPT',
     maxWidth: '2xl'
   },
 ] as const;
