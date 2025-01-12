@@ -92,7 +92,9 @@ td {
 
   /* Example extra brand tokens */
   --color-brand-dark: #ff8f00;
-  --color-brand-light: #ffdda8;
+  --color-brand-light: #facc82;
+  /* box-shadow */
+  --box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
 /* Dark mode color variables (default for dark preference) */

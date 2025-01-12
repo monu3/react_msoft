@@ -12,7 +12,7 @@ export const breadcrumbs = {
     ],
     planRequest: [
       { label: "Dashboard", href: "/" },
-       { label: "Plan Reques" }
+       { label: "Plan Request" }
       ],
   planCard: [
     { label: "Dashboard", href: "/" },

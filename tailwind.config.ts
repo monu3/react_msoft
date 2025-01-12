@@ -34,6 +34,9 @@ export default {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
+			boxShadow: {
+				custom: "rgb(38, 57, 77) 0px 20px 30px -10px;"
+			},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',

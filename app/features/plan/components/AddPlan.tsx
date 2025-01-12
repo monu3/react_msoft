@@ -14,7 +14,7 @@ const AddPlan: React.FC<AddPlanProps> = ({ onAddPlan }) => {
     <div className="relative">
       {/* Icon Button to Open Form */}
       <RiAddBoxFill
-        className="text-orange-500 text-4xl cursor-pointer hover:text-orange-700 transition-colors"
+        className="text-text-500 text-4xl cursor-pointer hover:text-indigo-500 transition-colors"
         onClick={() => setIsOpen(true)}
       />
 
