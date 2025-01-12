@@ -12,7 +12,7 @@ const Layout: React.FC<LayoutProps> = ({ children, breadcrumbItems }) => {
   return (
     <div className="h-screen flex flex-col bg-[var(--color-bg)] text-[var(--color-text)]">
       {/* Breadcrumb */}
-      <nav className="p-4 bg-[var(--color-primary)]">
+      <nav className="p-4">
         <Breadcrumb aria-label="Breadcrumb navigation" className="text-lg">
           {breadcrumbItems.map((item, index) => (
             <Breadcrumb.Item

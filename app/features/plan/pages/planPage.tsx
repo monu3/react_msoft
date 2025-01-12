@@ -6,6 +6,7 @@ import type { PlanData } from '../types';
 import BreadcrumbLayouts from '~/common/components/BreadcrumbLayouts';
 import { breadcrumbs } from '~/common/utils/routes/breadcrumbs';
 import { PlanForm } from '../components/PlanForm'; // Import the PlanForm component
+import NoPlan from '../components/NoPlan';
 
 interface PlansProps {
   plans: PlanData[]; // Explicitly define plans as an array of PlanData
@@ -99,7 +100,7 @@ const PlanPage: React.FC<PlansProps> = ({ plans = [] }) => {
               </div>
             ))
           ) : (
-            <p>No plans available</p> // Display a message if there are no plans
+            <NoPlan /> // Display a message if there are no plans
           )}
         </div>
       </div>

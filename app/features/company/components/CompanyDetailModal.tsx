@@ -137,11 +137,11 @@ const CompanyDetailModal: React.FC<CompanyDetailModalProps> = ({
             </Button>
             <div className="flex space-x-2">
               {!isEditing ? (
-                <Button color="warning" onClick={handleStartEditing}>
+                <Button className="bg-text" onClick={handleStartEditing}>
                   Edit
                 </Button>
               ) : (
-                <Button color="success" onClick={handleSaveEdit}>
+                <Button className="bg-text" onClick={handleSaveEdit}>
                   Save Changes
                 </Button>
               )}

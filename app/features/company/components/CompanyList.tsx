@@ -131,9 +131,8 @@ const CompanyList: React.FC = () => {
           Company Management
         </h1>
         <Button
-          color="success"
           onClick={() => setIsModalOpen(true)}
-          className="w-full md:w-auto"
+          className="w-full md:w-auto bg-text"
         >
           <HiPlus className="mr-2 h-5 w-5" />
           Add Company
@@ -152,11 +151,11 @@ const CompanyList: React.FC = () => {
           <p>Click the "Add Company" button to create a new company.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10">
           {companies.map((company) => (
             <Card
               key={company.companyId}
-              className="hover:shadow-lg transition-shadow cursor-pointer bg-[var(--color-card)] dark:bg-[var(--color-card)]"
+              className="hover?shadow-lg transition-shadow shadow-custom cursor-pointer bg-[var(--color-card)] dark:bg-[var(--color-card)]"
               onClick={() => handleOpenCompanyDetails(company)}
             >
               <h2 className="text-lg font-semibold text-[var(--color-text)] dark:text-white">

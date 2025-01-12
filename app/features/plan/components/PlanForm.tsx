@@ -101,7 +101,7 @@ export const PlanForm: React.FC<PlanFormProps> = ({ onClose, onAddPlan, onEditPl
         className="relative flex flex-col gap-3 bg-white p-8 rounded-lg shadow-lg max-w-lg w-full"
       >
         <AiOutlineClose
-          className="absolute top-2 right-2 text-xl cursor-pointer hover:text-red-500"
+          className="absolute top-2 right-2 text-xl cursor-pointer hover:text-indigo-500"
           onClick={onClose}
         />
 
@@ -164,9 +164,9 @@ export const PlanForm: React.FC<PlanFormProps> = ({ onClose, onAddPlan, onEditPl
             <Button
               type="button"
               onClick={handleAddFeature}
-              className="bg-blue-500 hover:bg-blue-700"
+              className="bg-text hover:bg-text"
             >
-              {plan ? "Save Changes" : "Submit"}
+              {plan ? "Edit" : "Add"}
             </Button>
           </div>
           <div className="mt-2">
@@ -196,8 +196,8 @@ export const PlanForm: React.FC<PlanFormProps> = ({ onClose, onAddPlan, onEditPl
           />
         </div>
 
-        <Button type="submit" className="bg-orange-500 hover:bg-orange-700 transition-colors">
-          {plan ? "Save Changes" : "Submit"}
+        <Button type="submit" className="bg-text hover:bg-text transition-colors">
+          {plan ? "Edit" : "Add"}
         </Button>
       </form>
     </div>
