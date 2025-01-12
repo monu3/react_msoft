@@ -1,38 +1,23 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
+
+const LOCAL_STORAGE_KEY = "screenshots_data";
+
+type Screenshot = {
+  title: string;
+  image: string;
+};
 
 export function ScreenshotsSection() {
-  const screenshots = [
-    {
-      title: "CRM Dashboard",
-      image:
-        "https://c8.alamy.com/comp/H3H09E/businessman-touching-financial-dashboard-with-key-performance-indicators-H3H09E.jpg",
-    },
-    {
-      title: "Balance Sheet",
-      image:
-        "https://c8.alamy.com/comp/H3H09E/businessman-touching-financial-dashboard-with-key-performance-indicators-H3H09E.jpg",
-    },
-    {
-      title: "Profile Overview",
-      image:
-        "https://c8.alamy.com/comp/H3H09E/businessman-touching-financial-dashboard-with-key-performance-indicators-H3H09E.jpg",
-    },
-    {
-      title: "Messenger",
-      image:
-        "https://c8.alamy.com/comp/H3H09E/businessman-touching-financial-dashboard-with-key-performance-indicators-H3H09E.jpg",
-    },
-    {
-      title: "Kanban Page",
-      image:
-        "https://c8.alamy.com/comp/H3H09E/businessman-touching-financial-dashboard-with-key-performance-indicators-H3H09E.jpg",
-    },
-    {
-      title: "Plans",
-      image:
-        "https://c8.alamy.com/comp/H3H09E/businessman-touching-financial-dashboard-with-key-performance-indicators-H3H09E.jpg",
-    },
-  ];
+  const [screenshots, setScreenshots] = useState<Screenshot[]>([]);
+
+  useEffect(() => {
+    const storedScreenshots = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (storedScreenshots) {
+      setScreenshots(JSON.parse(storedScreenshots));
+    }
+  }, []);
 
   return (
     <section className="py-20 px-4 md:px-6 bg-muted/50">
@@ -42,25 +27,31 @@ export function ScreenshotsSection() {
             Screenshots
           </h2>
           <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-            Use these awesome forms to login or create new account in your
+            Use these awesome forms to login or create a new account in your
             project for free.
           </p>
         </div>
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {screenshots.map((screenshot, index) => (
-            <div key={index} className="space-y-4">
-              <img
-                src={screenshot.image}
-                alt={screenshot.title}
-                className="w-full h-auto rounded-lg shadow-sm object-cover"
-                loading="lazy"
-              />
-              <h3 className="text-xl font-semibold text-center">
-                {screenshot.title}
-              </h3>
-            </div>
-          ))}
-        </div>
+        {screenshots.length > 0 ? (
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {screenshots.map((screenshot, index) => (
+              <div key={index} className="space-y-4">
+                <img
+                  src={screenshot.image}
+                  alt={screenshot.title}
+                  className="w-full h-auto rounded-lg shadow-sm object-cover"
+                  loading="lazy"
+                />
+                <h3 className="text-xl font-semibold text-center">
+                  {screenshot.title || "Untitled"}
+                </h3>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className="text-muted-foreground text-center">
+            No screenshots available. Please add some in the admin panel.
+          </p>
+        )}
       </div>
     </section>
   );

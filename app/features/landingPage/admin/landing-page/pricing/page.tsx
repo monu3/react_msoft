@@ -17,7 +17,7 @@ export default function PricingAdmin() {
   }
 
   return (
-    <div className="p-6 max-w-4xl mx-auto">
+    <div className="p-6 max-w-4xl mx-auto custom-scroll-container scrollbar-hidden">
       <h1 className="text-2xl font-bold mb-6">Add Pricing Plan</h1>
       <form action={handleSubmit} className="space-y-4">
         <div>

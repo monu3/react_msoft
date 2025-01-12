@@ -3,23 +3,35 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { updateHomeSection } from "~/features/landingPage/actions/landing-page";
 import { useState } from "react";
 
 export default function HomeSectionAdmin() {
   const [message, setMessage] = useState("");
 
-  async function handleSubmit(formData: FormData) {
-    const result = await updateHomeSection(formData);
-    if (result.success) {
-      setMessage("Home section updated successfully!");
-    }
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    const data = {
+      offerText: formData.get("offerText") as string,
+      heading: formData.get("heading") as string,
+      description: formData.get("description") as string,
+      trustedBy: formData.get("trustedBy") as string,
+      liveDemoLink: formData.get("liveDemoLink") as string,
+      buyNowLink: formData.get("buyNowLink") as string,
+      bannerImage: formData.get("bannerImage") as string,
+    };
+
+    // Save data to localStorage
+    localStorage.setItem("homeSectionData", JSON.stringify(data));
+
+    setMessage("Home section updated successfully!");
   }
 
   return (
-    <div className="p-6 max-w-4xl mx-auto">
+    <div className="p-6 max-w-4xl mx-auto custom-scroll-container scrollbar-hidden">
       <h1 className="text-2xl font-bold mb-6">Edit Home Section</h1>
-      <form action={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="block text-sm font-medium mb-1">Offer Text</label>
           <Input name="offerText" placeholder="70% Special Offer" required />
