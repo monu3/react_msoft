@@ -60,8 +60,8 @@ export function TestimonialsSection() {
             From our Clients
           </h2>
           <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-            Use these awesome forms to login or create a new account in your
-            project for free.
+            Hear from our users! Explore real stories and experiences that
+            highlight the impact and value we've delivered
           </p>
         </div>
         <div className="grid gap-6 relative">

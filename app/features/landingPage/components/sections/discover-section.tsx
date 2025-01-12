@@ -9,7 +9,7 @@ export function DiscoverSection() {
             Discover More
           </h2>
           <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-            Use these awesome forms to login or create new account in your project for free.
+          Explore new opportunities, uncover hidden features, and expand your horizons. Let curiosity lead you to deeper insights and endless possibilities
           </p>
         </div>
         <div className="flex justify-center gap-4">
