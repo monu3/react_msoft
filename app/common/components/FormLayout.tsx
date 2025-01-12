@@ -59,7 +59,7 @@ interface FormGridProps {
 
 const FormGrid: React.FC<FormGridProps> = ({ children }) => {
   return (
-    <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-10">
+    <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-10 mb-5">
       {children}
     </div>
   )

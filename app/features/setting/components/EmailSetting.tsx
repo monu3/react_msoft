@@ -163,8 +163,6 @@
 // };
 
 // export default EmailSetting;
-'use client'
-
 import { Button } from 'flowbite-react'
 import { FormContainer, FormGrid, FormField } from '~/common/components/FormLayout'
 
