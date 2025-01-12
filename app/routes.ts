@@ -16,13 +16,14 @@ export default [
     route("landingPage", "features/landingPage/admin/landing-page/page.tsx", [
       index("features/landingPage/admin/page.tsx"),
     ]),
-    route("settings", "features/setting/pages/SettingBar.tsx", [
-      route("brand", "features/setting/components/BrandSetting.tsx"),
-      route("email", "features/setting/components/EmailSetting.tsx"),
-      route("pusher","features/setting/components/PusherSettings.tsx"),
-      route("payment","features/setting/components/PaymentSetting.tsx"),
-      route("recaptcha","features/setting/components/ReCaptchaSetting.tsx"),
-      route("storage","features/setting/components/StorageSetting.tsx"),
+    route("settings", "features/setting/pages/SettingPage.tsx", [
+      
+      // route("brand", "features/setting/components/BrandSetting.tsx"),
+      // route("email", "features/setting/components/EmailSetting.tsx"),
+      // route("pusher","features/setting/components/PusherSettings.tsx"),
+      // route("payment","features/setting/components/PaymentSetting.tsx"),
+      // route("recaptcha","features/setting/components/ReCaptchaSetting.tsx"),
+      // route("storage","features/setting/components/StorageSetting.tsx"),
       
     ]),
   ]),
