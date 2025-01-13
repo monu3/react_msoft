@@ -5,6 +5,7 @@ import { ScreenshotsSection } from "~/features/landingPage/components/sections/s
 import { PricingSection } from "~/features/landingPage/components/sections/pricing-section";
 import { FAQSection } from "~/features/landingPage/components/sections/faq-section";
 import { TestimonialsSection } from "~/features/landingPage/components/sections/testimonials-section";
+import { Outlet } from "react-router";
 
 export default function LandingPage() {
   return (
@@ -16,6 +17,7 @@ export default function LandingPage() {
         <PricingSection />
         <FAQSection />
         <TestimonialsSection />
+        <Outlet/>
       </main>
   );
 }
