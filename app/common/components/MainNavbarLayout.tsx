@@ -30,21 +30,32 @@ const MainNavbarLayout: React.FC<MainNavbarLayoutProps> = ({
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
   useEffect(() => {
-    // Detect system theme preference on initial load
     const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     setTheme(systemTheme);
-
-    // Listen to system theme changes
+  
+    // Add or remove dark mode class from the <html> tag
+    if (systemTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  
     const themeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const handleThemeChange = (e: MediaQueryListEvent) => {
-      setTheme(e.matches ? 'dark' : 'light');
+      const newTheme = e.matches ? 'dark' : 'light';
+      setTheme(newTheme);
+      if (newTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
     };
-
+  
     themeMediaQuery.addEventListener('change', handleThemeChange);
-
-    // Clean up listener on component unmount
+  
     return () => themeMediaQuery.removeEventListener('change', handleThemeChange);
   }, []);
+  
 
   useEffect(() => {
     const handleStorageChange = () => {
@@ -96,7 +107,7 @@ const MainNavbarLayout: React.FC<MainNavbarLayoutProps> = ({
 
   return (
     <div className={`flex ${className || ''}`}>
-      <Sidebar aria-label="Main navigation" className="h-screen fixed top-0 left-0 z-10 w-64">
+      <Sidebar aria-label="Main navigation" className="h-screen fixed top-0 left-0 z-10 w-64 bg-[var(--color-bg)] text-[var(--color-text)] transition-colors duration-300">
         <Sidebar.Items>
           <Sidebar.ItemGroup>
             {logoSrc && (
@@ -112,12 +123,16 @@ const MainNavbarLayout: React.FC<MainNavbarLayoutProps> = ({
                   to={item.to}
                   icon={item.icon}
                   className={`
-                    no-underline text-base
-                    ${isActive(item)
-                      ? "bg-text text-white hover:bg-text-500 hover:text-white"
-                      : "text-gray-600 hover:bg-gray-200 hover:text-gray-900"
-                    }
-                    transition-colors duration-200
+                   no-underline text-base
+    ${isActive(item)
+      ? "bg-text text-white hover:bg-text-500 hover:text-white"
+      : "text-gray-600 hover:bg-gray-200 hover:text-gray-900"
+    }
+    dark:${isActive(item)
+      ? "bg-gray-600 text-white hover:bg-text-600 hover:text-white"
+      : "text-gray-300 hover:bg-gray-700 hover:text-white"
+    }
+    transition-colors duration-200
                   `}
                   aria-current={isActive(item) ? 'page' : undefined}
                 >
