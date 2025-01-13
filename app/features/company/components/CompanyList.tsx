@@ -132,7 +132,7 @@ const CompanyList: React.FC = () => {
         </h1>
         <Button
           onClick={() => setIsModalOpen(true)}
-          className="w-full md:w-auto bg-text"
+          className="w-full md:w-auto bg-text bg-[var(--color-bg)]"
         >
           <HiPlus className="mr-2 h-5 w-5" />
           Add Company
