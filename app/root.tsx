@@ -14,6 +14,7 @@ import { Provider } from "react-redux";
 import { store } from "./store/store";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { PlanProvider } from "./features/plan/context/PlanContext";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -51,7 +52,9 @@ export default function App() {
   return (
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
-        <Outlet />
+        <PlanProvider> {/* Wrap everything with PlanProvider */}
+          <Outlet />
+        </PlanProvider>
       </QueryClientProvider>
     </Provider>
   );
