@@ -10,7 +10,7 @@ import { TfiSettings } from "react-icons/tfi";
 import logo from "public/assets/logo.png";
 
 const navItems = [
-  { to: "/", label: "Dashboard", icon: RxDashboard },
+  { to: "/dashboard", label: "Dashboard", icon: RxDashboard },
   { to: "/company", label: "Company", icon: FaIndustry },
   { to: "/plan", label: "Plan", icon: BsFillAwardFill },
   { to: "/plan-request", label: "Plan Request", icon: VscGitPullRequest },
