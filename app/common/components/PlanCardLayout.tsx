@@ -27,8 +27,8 @@ export default function PlanCard({
   return (
     <div
       className={classNames(
-        featured ? 'relative bg-gray-900 shadow-2xl' : 'bg-white/60',
-        'rounded-3xl p-6 ring-1 ring-gray-900/10 sm:p-8 min-h-[250px]' // Reduced padding for smaller card
+        featured ? 'relative bg-gray-900' : 'bg-white/60',
+        'rounded-3xl p-6 ring-1 ring-gray-900/10 sm:p-8 min-h-[250px] shadow-custom' // Reduced padding for smaller card
       )}
     >
       <h3
