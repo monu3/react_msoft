@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { LuEye, LuEyeOff } from "react-icons/lu";
 import {
   Dialog,
   DialogContent,
@@ -116,7 +115,7 @@ export default function AdminDashboard() {
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {SECTIONS.slice(0).map(section => (
-          <div key={section.id} className="p-6 bg-muted rounded-lg shadow-custom">
+          <div key={section.id} className="p-6 bg-muted rounded-lg">
             <h2 className="text-xl font-semibold mb-4">{section.title}</h2>
             <p className="text-muted-foreground mb-4">{section.description}</p>
             <Button onClick={() => setOpenSection(section.id)}>

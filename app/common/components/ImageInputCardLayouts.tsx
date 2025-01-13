@@ -1,49 +1,4 @@
-// import React from "react"
-
-// interface CardLayoutProps{
-//     children: React.ReactNode
-// }
-
-// interface CardContainerProps{
-//     title: string
-//     children:React.ReactNode
-// }
-
-// interface CardImageProps{
-//     src:"",
-//     alt:"Image not selected"
- 
-// }
-// interface CardInputFileProps{
-//     ,
-
-// }
-// const CardContainer: React.FC<CardContainerProps> = ({ title, children }) => {
-//   return (
-//     <div className="max-w-4xl p-6 bg-white rounded-lg shadow">
-//       <div className="mb-6">
-//         <h2 className="text-2xl font-semibold text-gray-900">{title}</h2>
-//       </div>
-//       {children}
-//     </div>
-//   )
-// }
-// const CardLayout: React.FC<CardLayoutProps> = ({ children}) => {
-//   return (
-//     <div className="flex ">
-//       <main>{children}</main>
-//     </div>
-//   )
-// }
-// const CardImage: React.FC<CardImageProps> =({src,
-//     alt
-// })=>{
-//     return(
-//         <img src={src} alt={alt}/>    
-//     )
-// }
 import React, { useState } from 'react';
-import { Upload } from 'lucide-react';
 
 interface CardLayoutProps {
   children: React.ReactNode;

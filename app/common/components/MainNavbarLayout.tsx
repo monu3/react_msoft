@@ -1,8 +1,11 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { Sidebar } from 'flowbite-react';
-import { NavLink, useLocation } from 'react-router';
-import { useBrandSettings } from '~/features/setting/hook/useBrandSettings';
-import { BRAND_SETTINGS_KEY } from '~/features/setting/hook/useBrandSettings';
+//
+import React, { useCallback, useEffect, useState } from "react";
+import { Sidebar } from "flowbite-react";
+import { NavLink, useLocation } from "react-router";
+import {
+  useBrandSettings,
+  BRAND_SETTINGS_UPDATED_EVENT,
+} from "~/features/setting/hook/useBrandSettings";
 
 interface NavItem {
   to: string;
@@ -24,95 +27,117 @@ const MainNavbarLayout: React.FC<MainNavbarLayoutProps> = ({
   className,
 }) => {
   const location = useLocation();
-  const { settings, updateSettings } = useBrandSettings();
+  const { settings } = useBrandSettings();
+  const [logoSrc, setLogoSrc] = useState<string | null | undefined>(null);
+  const [theme, setTheme] = useState<"light" | "dark">(() =>
+    window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
+  );
 
-  // State to manage theme based on system preference
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
-
-  useEffect(() => {
-    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    setTheme(systemTheme);
-  
-    // Add or remove dark mode class from the <html> tag
-    if (systemTheme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  
-    const themeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const handleThemeChange = (e: MediaQueryListEvent) => {
-      const newTheme = e.matches ? 'dark' : 'light';
-      setTheme(newTheme);
-      if (newTheme === 'dark') {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
-    };
-  
-    themeMediaQuery.addEventListener('change', handleThemeChange);
-  
-    return () => themeMediaQuery.removeEventListener('change', handleThemeChange);
-  }, []);
-  
-
-  useEffect(() => {
-    const handleStorageChange = () => {
-      const stored = localStorage.getItem(BRAND_SETTINGS_KEY);
-      if (stored) {
-        try {
-          const parsedSettings = JSON.parse(stored);
-          updateSettings(parsedSettings);
-        } catch (error) {
-          console.error('Error parsing settings:', error);
-        }
-      }
-    };
-
-    window.addEventListener('storage', handleStorageChange);
-    return () => window.removeEventListener('storage', handleStorageChange);
-  }, [updateSettings]);
-
-  const logoSrc = useMemo(() => {
-    const storedSettings = JSON.parse(localStorage.getItem(BRAND_SETTINGS_KEY) || '{}');
-    return theme === 'dark'
-      ? storedSettings.darkLogo || settings.darkLogo || propLogo
-      : storedSettings.lightLogo || settings.lightLogo || propLogo;
+  // Update logo whenever theme or settings change
+  const updateLogo = useCallback(() => {
+    const newLogoSrc =
+      theme === "dark"
+        ? settings.darkLogo || propLogo
+        : settings.lightLogo || propLogo;
+    setLogoSrc(newLogoSrc);
   }, [theme, settings, propLogo]);
 
-  const isActive = (item: NavItem) => {
-    return location.pathname === item.to || location.pathname.startsWith(`${item.to}/`);
-  };
+  useEffect(() => {
+    updateLogo();
+  }, [updateLogo]);
 
   useEffect(() => {
+    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
+      .matches
+      ? "dark"
+      : "light";
+    setTheme(systemTheme);
+
+    // Add or remove dark mode class from the <html> tag
+    if (systemTheme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+
+    const themeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleThemeChange = (e: MediaQueryListEvent) => {
+      const newTheme = e.matches ? "dark" : "light";
+      setTheme(newTheme);
+      if (newTheme === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    };
+
+    themeMediaQuery.addEventListener("change", handleThemeChange);
+
+    return () =>
+      themeMediaQuery.removeEventListener("change", handleThemeChange);
+  }, []);
+
+  // Listen for settings updates
+  useEffect(() => {
+    const handleSettingsUpdate = () => {
+      updateLogo();
+    };
+
+    window.addEventListener(BRAND_SETTINGS_UPDATED_EVENT, handleSettingsUpdate);
+    return () => {
+      window.removeEventListener(
+        BRAND_SETTINGS_UPDATED_EVENT,
+        handleSettingsUpdate
+      );
+    };
+  }, [updateLogo]);
+
+  // Theme detection
+  useEffect(() => {
+    const themeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleThemeChange = (e: MediaQueryListEvent | MediaQueryList) => {
+      setTheme(e.matches ? "dark" : "light");
+    };
+
+    themeMediaQuery.addEventListener("change", handleThemeChange);
+    return () =>
+      themeMediaQuery.removeEventListener("change", handleThemeChange);
+  }, []);
+
+  // Favicon update
+  useEffect(() => {
     if (settings.favIcon) {
-      const favicon = document.querySelector<HTMLLinkElement>('link[rel="icon"]');
+      const favicon =
+        document.querySelector<HTMLLinkElement>('link[rel="icon"]');
       if (favicon) {
         favicon.href = settings.favIcon;
       } else {
-        const newFavicon = document.createElement('link');
-        newFavicon.rel = 'icon';
+        const newFavicon = document.createElement("link");
+        newFavicon.rel = "icon";
         newFavicon.href = settings.favIcon;
         document.head.appendChild(newFavicon);
       }
     }
   }, [settings.favIcon]);
 
-  // useEffect(() => {
-  //   if (settings.titleText) {
-  //     document.title = settings.titleText;
-  //   }
-  // }, [settings.titleText]);
+  const isActive = (item: NavItem) => {
+    return (
+      location.pathname === item.to ||
+      location.pathname.startsWith(`${item.to}/`)
+    );
+  };
 
   return (
-    <div className={`flex ${className || ''}`}>
-      <Sidebar aria-label="Main navigation" className="h-screen fixed top-0 left-0 z-10 w-64 bg-[var(--color-bg)] text-[var(--color-text)] transition-colors duration-300">
+    <div className={`flex ${className || ""}`}>
+      <Sidebar
+        aria-label="Main navigation"
+        className="h-screen fixed top-0 left-0 z-10 w-64"
+      >
         <Sidebar.Items>
           <Sidebar.ItemGroup>
             {logoSrc && (
               <div className="mb-6 px-2">
-                <img key={logoSrc} src={logoSrc} alt="Logo" className="h-12 w-auto" />
+                <img src={logoSrc} alt="Logo" className="h-12 w-auto" />
               </div>
             )}
             <div className="flex flex-col gap-2">
@@ -123,18 +148,20 @@ const MainNavbarLayout: React.FC<MainNavbarLayoutProps> = ({
                   to={item.to}
                   icon={item.icon}
                   className={`
-                   no-underline text-base
-    ${isActive(item)
-      ? "bg-text text-white hover:bg-text-500 hover:text-white"
-      : "text-gray-600 hover:bg-gray-200 hover:text-gray-900"
-    }
-    dark:${isActive(item)
-      ? "bg-gray-600 text-white hover:bg-text-600 hover:text-white"
-      : "text-gray-300 hover:bg-gray-700 hover:text-white"
-    }
-    transition-colors duration-200
+                    no-underline text-base
+                    ${
+                      isActive(item)
+                        ? "bg-text text-white hover:bg-text-500 hover:text-white"
+                        : "text-gray-600 hover:bg-gray-200 hover:text-gray-900"
+                    }
+                    dark:${
+                      isActive(item)
+                        ? "bg-gray-600 text-white hover:bg-text-600 hover:text-white"
+                        : "text-gray-300 hover:bg-gray-700 hover:text-white"
+                    }
+                    transition-colors duration-200
                   `}
-                  aria-current={isActive(item) ? 'page' : undefined}
+                  aria-current={isActive(item) ? "page" : undefined}
                 >
                   {item.label}
                 </Sidebar.Item>
@@ -143,7 +170,6 @@ const MainNavbarLayout: React.FC<MainNavbarLayoutProps> = ({
           </Sidebar.ItemGroup>
         </Sidebar.Items>
       </Sidebar>
-
       <div className="flex-1 p-6 overflow-auto bg-[var(--color-bg)] text-[var(--color-text)] ml-64">
         {children}
       </div>
@@ -152,5 +178,3 @@ const MainNavbarLayout: React.FC<MainNavbarLayoutProps> = ({
 };
 
 export default MainNavbarLayout;
-
-
