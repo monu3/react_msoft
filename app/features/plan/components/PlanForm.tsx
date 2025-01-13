@@ -98,7 +98,7 @@ export const PlanForm: React.FC<PlanFormProps> = ({ onClose, onAddPlan, onEditPl
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <form
         onSubmit={handleSubmit}
-        className="relative flex flex-col gap-3 bg-white p-8 rounded-lg shadow-lg max-w-lg w-full"
+        className="relative flex flex-col gap-3 bg-white p-8 rounded-lg shadow-lg max-w-lg w-full "
       >
         <AiOutlineClose
           className="absolute top-2 right-2 text-xl cursor-pointer hover:text-indigo-500"
@@ -177,7 +177,7 @@ export const PlanForm: React.FC<PlanFormProps> = ({ onClose, onAddPlan, onEditPl
                   <Button
                     type="button"
                     onClick={() => handleDeleteFeature(idx)}
-                    className="text-red-500 ml-2"
+                    className="text-red-500 ml-2 mt-2"
                   >
                     Delete
                   </Button>
