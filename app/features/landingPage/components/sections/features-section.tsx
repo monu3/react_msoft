@@ -55,7 +55,7 @@ export function FeaturesSection() {
   return (
     <section className="py-20 px-4 md:px-6 bg-muted/50">
       <div className="container mx-auto max-w-7xl">
-        <div className="text-center space-y-4 mb-12">
+        <div className="text-center space-y-4 mb-12 ">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
             Features
           </h2>
@@ -63,9 +63,9 @@ export function FeaturesSection() {
             CRMGo SaaS - Projects, Accounting, Leads, Deals & HRM Tool
           </p>
         </div>
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 ">
           {features.map((feature: Feature, index: number) => (
-            <div key={index} className="p-6 bg-background rounded-lg shadow-sm">
+            <div key={index} className="p-6 bg-background rounded-lg shadow-fshadow">
               <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
               <p className="text-muted-foreground">{feature.description}</p>
             </div>

@@ -26,8 +26,7 @@ export function FAQSection() {
             FAQ
           </h2>
           <p className="text-muted-foreground text-lg">
-            Use these awesome forms to login or create a new account in your
-            project for free.
+          Find quick answers to common questions and gain clarity on everything you need to know
           </p>
         </div>
         <Accordion type="single" collapsible className="w-full">

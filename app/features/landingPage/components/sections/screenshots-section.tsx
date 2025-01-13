@@ -27,8 +27,7 @@ export function ScreenshotsSection() {
             Screenshots
           </h2>
           <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-            Use these awesome forms to login or create a new account in your
-            project for free.
+          Capture and showcase your project's key features and progress with clear, impactful screenshots that leave a lasting impression
           </p>
         </div>
         {screenshots.length > 0 ? (
