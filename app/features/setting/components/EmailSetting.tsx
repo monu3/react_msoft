@@ -163,13 +163,12 @@
 // };
 
 // export default EmailSetting;
-import { Button } from 'flowbite-react'
+import { Button } from '@/components/ui/button';
 import { FormContainer, FormGrid, FormField } from '~/common/components/FormLayout'
 
 export default function EmailSettingsForm() {
   return (
     <FormContainer 
-      title="Email Settings"
       description="Edit your email details"
     >
       <form className="space-y-6">
@@ -180,23 +179,27 @@ export default function EmailSettingsForm() {
               label="Mail Driver"
               id="mail-driver"
               defaultValue="smtp"
+              name=''
             />
             <FormField
               label="Mail Port"
               id="mail-port"
               defaultValue="465"
+              name=''
             />
             <FormField
               label="Mail Password"
               id="mail-password"
               type="password"
               defaultValue="cif#xace7d+"
+              name=''
             />
             <FormField
               label="Mail From Address"
               id="mail-from-address"
               type="email"
               defaultValue="info@bizzosflow.com"
+              name=''
             />
           </div>
 
@@ -206,31 +209,35 @@ export default function EmailSettingsForm() {
               label="Mail Host"
               id="mail-host"
               defaultValue="mail.bizzosflow.com"
+              name=''
             />
             <FormField
               label="Mail Username"
               id="mail-username"
               type="email"
               defaultValue="info@bizzosflow.com"
+              name=''
             />
             <FormField
               label="Mail Encryption"
               id="mail-encryption"
               defaultValue="ssl"
+              name=''
             />
             <FormField
               label="Mail From Name"
               id="mail-from-name"
               defaultValue="Msoft International"
+              name=''
             />
           </div>
         </FormGrid>
 
-        <div className="flex flex-wrap items-center gap-4">
-          <Button color="warning">
+        <div className="flex flex-wrap items-center gap-4 justify-around">
+          <Button>
             Send Test Mail
           </Button>
-          <Button color="warning">
+          <Button>
             Save Changes
           </Button>
         </div>
