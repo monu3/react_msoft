@@ -1,4 +1,5 @@
-import { Button, ToggleSwitch } from "flowbite-react";
+import {ToggleSwitch } from "flowbite-react";
+import { Button } from '@/components/ui/button';
 import React, { useState } from "react";
 import { FormContainer, FormField, FormGrid } from "~/common/components/FormLayout";
 
@@ -6,13 +7,12 @@ const ReCaptchaSetting = () => {
   const [switch1, setSwitch1] = useState(true);
   return (
     <FormContainer
-      title="ReCaptcha Settings"
       description=""
     >
       <form action="">
         <FormGrid>
           <div className="space-y-6">
-            <FormField label="Google ReCaptcha Key" id="recaptcha" defaultValue="" placeholder="Enter Google ReCaptcha Key"/>
+            <FormField label="Google ReCaptcha Key" id="recaptcha" defaultValue="" placeholder="Enter Google ReCaptcha Key" name=""/>
           </div>
           <div className="space-y-6">
             <FormField
@@ -20,6 +20,7 @@ const ReCaptchaSetting = () => {
               id=""
               defaultValue=""
               placeholder="Enter Google ReCaptcha Secret"
+              name=""
             />
           </div>
         </FormGrid>
@@ -27,7 +28,7 @@ const ReCaptchaSetting = () => {
           <ToggleSwitch checked={switch1} onChange={setSwitch1} label="Enable"/>
         </div>
         <div className="flex flex-wrap items-center justify-end gap-4 my-4">
-          <Button color="warning">Save Changes</Button>
+          <Button>Save Changes</Button>
         </div>
       </form>
     </FormContainer>
