@@ -14,6 +14,7 @@ import ScreenshotsAdmin from "./screenshots/page";
 import PricingAdmin from "./pricing/page";
 import FAQAdmin from "./faq/page";
 import TestimonialsAdmin from "./testimonials/page";
+import TrustedAdmin from "./trusted/page";
 
 // Define section configuration
 const SECTIONS = [
@@ -41,6 +42,14 @@ const SECTIONS = [
     description: "Add or edit product features.",
     component: FeaturesAdmin,
     buttonText: "Manage Features",
+    maxWidth: "4xl",
+  },
+  {
+    id: "trusted",
+    title: "Trusted Company",
+    description: "Add and update trusted company logos.",
+    component: TrustedAdmin ,
+    buttonText: "Manage Trust",
     maxWidth: "4xl",
   },
   {

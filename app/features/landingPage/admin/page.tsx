@@ -6,12 +6,14 @@ import { PricingSection } from "~/features/landingPage/components/sections/prici
 import { FAQSection } from "~/features/landingPage/components/sections/faq-section";
 import { TestimonialsSection } from "~/features/landingPage/components/sections/testimonials-section";
 import { Outlet } from "react-router";
+import {TrustSection} from "~/features/landingPage/components/sections/trusted-section";
 
 export default function LandingPage() {
   return (
       <main className="min-h-screen">
         <HomeSection />
         <FeaturesSection />
+        <TrustSection />
         <DiscoverSection />
         <ScreenshotsSection />
         <PricingSection />
