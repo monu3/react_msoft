@@ -401,7 +401,7 @@ const BrandSetting = () => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
 
-    const titleText = localTitleText.trim() || 'Default Title';
+    const titleText = localTitleText.trim() || 'ReDash';
     const footerText = formData.get('footerText')?.toString().trim() || '';
 
     updateSettings({ titleText, footerText });
@@ -410,7 +410,7 @@ const BrandSetting = () => {
 
   if (!isFormOpen) {
     return (
-      <div className="flex justify-center items-center h-screen">
+      <div className="flex justify-center items-center">
         <p className="text-lg">Brand settings saved successfully!</p>
       </div>
     );

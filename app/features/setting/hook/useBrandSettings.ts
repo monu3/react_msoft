@@ -97,7 +97,7 @@ const defaultSettings: BrandSettings = {
   lightLogo: null,
   darkLogo: null,
   favIcon: null,
-  titleText: 'Default Title',
+  titleText: 'ReDash',
   footerText: ''
 };
 
