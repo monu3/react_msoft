@@ -38,9 +38,9 @@ export const PlanForm: React.FC<PlanFormProps> = ({ onClose, onAddPlan, onEditPl
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
-    setFormData({ 
-      ...formData, 
-      [id]: value 
+    setFormData({
+      ...formData,
+      [id]: value,
     });
   };
 
@@ -73,19 +73,14 @@ export const PlanForm: React.FC<PlanFormProps> = ({ onClose, onAddPlan, onEditPl
     // Generate a new unique ID for the plan if adding a new plan
     const newPlanId = plan ? plan.id : nanoid(); // Generate new ID using nanoid
 
-    // Log the form data to check if it's correct
-    console.log('Form submitted with:', { ...formData, id: newPlanId }, isEnabled);
-
     if (formData.name && formData.priceMonthly && formData.description) {
       const updatedPlan = { ...formData, id: newPlanId, isEnabled };
 
       if (plan) {
         // If editing an existing plan
-        console.log('Editing plan:', updatedPlan);
         onEditPlan(updatedPlan);
       } else {
         // If adding a new plan
-        console.log('Adding new plan:', updatedPlan);
         onAddPlan(updatedPlan);
       }
       onClose(); // Close the form after submission
@@ -98,21 +93,23 @@ export const PlanForm: React.FC<PlanFormProps> = ({ onClose, onAddPlan, onEditPl
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <form
         onSubmit={handleSubmit}
-        className="relative flex flex-col gap-3 bg-white p-8 rounded-lg shadow-lg max-w-lg w-full "
+        className="relative flex flex-col gap-3 bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg max-w-lg w-full"
       >
         <AiOutlineClose
-          className="absolute top-2 right-2 text-xl cursor-pointer hover:text-indigo-500"
+          className="absolute top-2 right-2 text-xl cursor-pointer hover:text-indigo-500 dark:hover:text-indigo-400"
           onClick={onClose}
         />
 
-        <h2 className="text-2xl font-semibold text-center mb-4"> {plan ? "Edit Plan" : "Add New Plan"}</h2>
-        
+        <h2 className="text-2xl font-semibold text-center mb-4 text-gray-900 dark:text-gray-100">
+          {plan ? "Edit Plan" : "Add New Plan"}
+        </h2>
+
         {/* Display error message if id is not unique */}
         {error && <Alert color="failure">{error}</Alert>}
-        
+
         <div className="flex gap-10 mb-2">
           <div className="flex-1">
-            <Label htmlFor="name" value="Plan Name" />
+            <Label htmlFor="name" value="Plan Name" className="text-gray-900 dark:text-gray-100" />
             <TextInput
               id="name"
               type="text"
@@ -120,10 +117,11 @@ export const PlanForm: React.FC<PlanFormProps> = ({ onClose, onAddPlan, onEditPl
               required
               onChange={handleChange}
               value={formData.name}
+              className="dark:bg-gray-700 dark:border-gray-600 dark:text-white"
             />
           </div>
           <div className="flex-1">
-            <Label htmlFor="priceMonthly" value="Price Monthly" />
+            <Label htmlFor="priceMonthly" value="Price Monthly" className="text-gray-900 dark:text-gray-100" />
             <TextInput
               id="priceMonthly"
               type="number"
@@ -131,15 +129,14 @@ export const PlanForm: React.FC<PlanFormProps> = ({ onClose, onAddPlan, onEditPl
               required
               onChange={handleChange}
               value={formData.priceMonthly}
+              className="dark:bg-gray-700 dark:border-gray-600 dark:text-white"
             />
           </div>
         </div>
 
         <div className="flex gap-10 mb-2">
-     
-
           <div className="flex-1">
-            <Label htmlFor="description" value="Description" />
+            <Label htmlFor="description" value="Description" className="text-gray-900 dark:text-gray-100" />
             <TextInput
               id="description"
               type="text"
@@ -147,12 +144,13 @@ export const PlanForm: React.FC<PlanFormProps> = ({ onClose, onAddPlan, onEditPl
               required
               onChange={handleChange}
               value={formData.description}
+              className="dark:bg-gray-700 dark:border-gray-600 dark:text-white"
             />
           </div>
         </div>
 
         <div className="mb-2">
-          <Label htmlFor="features" value="Features" />
+          <Label htmlFor="features" value="Features" className="text-gray-900 dark:text-gray-100" />
           <div className="flex gap-2">
             <TextInput
               id="href"
@@ -160,11 +158,12 @@ export const PlanForm: React.FC<PlanFormProps> = ({ onClose, onAddPlan, onEditPl
               placeholder="Enter feature"
               value={formData.href}
               onChange={handleChange}
+              className="dark:bg-gray-700 dark:border-gray-600 dark:text-white"
             />
             <Button
               type="button"
               onClick={handleAddFeature}
-              className="bg-text hover:bg-text"
+              className="bg-text hover:bg-text dark:bg-gray-600 dark:hover:bg-gray-500"
             >
               {plan ? "Edit" : "Add"}
             </Button>
@@ -172,12 +171,12 @@ export const PlanForm: React.FC<PlanFormProps> = ({ onClose, onAddPlan, onEditPl
           <div className="mt-2">
             <ul>
               {formData.features.map((feature, idx) => (
-                <li key={idx} className="flex justify-between items-center">
+                <li key={idx} className="flex justify-between items-center text-gray-900 dark:text-gray-100">
                   {feature}
                   <Button
                     type="button"
                     onClick={() => handleDeleteFeature(idx)}
-                    className="text-red-500 ml-2 mt-2"
+                    className="text-red-500 ml-2 mt-2 dark:text-red-400"
                   >
                     Delete
                   </Button>
@@ -188,15 +187,16 @@ export const PlanForm: React.FC<PlanFormProps> = ({ onClose, onAddPlan, onEditPl
         </div>
 
         <div className="flex items-center justify-between mt-4 mb-4">
-          <Label htmlFor="enable" value="Enable Feature" />
+          <Label htmlFor="enable" value="Enable Feature" className="text-gray-900 dark:text-gray-100" />
           <ToggleSwitch
             id="enable"
             checked={isEnabled}
             onChange={(value) => setIsEnabled(value)}
+            className="dark:bg-gray-600"
           />
         </div>
 
-        <Button type="submit" className="bg-text hover:bg-text transition-colors">
+        <Button type="submit" className="bg-text hover:bg-text transition-colors dark:bg-gray-600 dark:hover:bg-gray-500">
           {plan ? "Edit" : "Add"}
         </Button>
       </form>

@@ -11,10 +11,10 @@ const AddPlan: React.FC<AddPlanProps> = ({ onAddPlan }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
-    <div className="relative">
+    <div className="relative flex justify-end ">
       {/* Icon Button to Open Form */}
       <RiAddBoxFill
-        className="text-text-500 text-4xl cursor-pointer hover:text-indigo-500 transition-colors"
+        className="text-text-500 text-4xl cursor-pointer hover:text-gray-500 transition-colors"
         onClick={() => setIsOpen(true)}
       />
 
