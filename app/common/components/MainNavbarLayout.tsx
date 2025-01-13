@@ -129,25 +129,27 @@ const MainNavbarLayout: React.FC<MainNavbarLayoutProps> = ({
 
   return (
     <div className={`flex ${className || ""}`}>
-      <Sidebar
-        aria-label="Main navigation"
-        className="h-screen fixed top-0 left-0 z-10 w-64"
-      >
-        <Sidebar.Items>
-          <Sidebar.ItemGroup>
-            {logoSrc && (
-              <div className="mb-6 px-2">
-                <img src={logoSrc} alt="Logo" className="h-12 w-auto" />
-              </div>
-            )}
-            <div className="flex flex-col gap-2">
-              {items.map((item) => (
-                <Sidebar.Item
-                  key={item.to}
-                  as={NavLink}
-                  to={item.to}
-                  icon={item.icon}
-                  className={`
+      {/* Desktop Sidebar */}
+      <div className="hidden md:block w-64 h-screen fixed top-0 left-0 z-10">
+        <Sidebar
+          aria-label="Main navigation"
+          className="h-screen fixed top-0 left-0 z-10 w-64"
+        >
+          <Sidebar.Items>
+            <Sidebar.ItemGroup>
+              {logoSrc && (
+                <div className="mb-6 px-2">
+                  <img src={logoSrc} alt="Logo" className="h-12 w-auto" />
+                </div>
+              )}
+              <div className="flex flex-col gap-2">
+                {items.map((item) => (
+                  <Sidebar.Item
+                    key={item.to}
+                    as={NavLink}
+                    to={item.to}
+                    icon={item.icon}
+                    className={`
                     no-underline text-base
                     ${
                       isActive(item)
@@ -161,16 +163,65 @@ const MainNavbarLayout: React.FC<MainNavbarLayoutProps> = ({
                     }
                     transition-colors duration-200
                   `}
-                  aria-current={isActive(item) ? "page" : undefined}
-                >
-                  {item.label}
-                </Sidebar.Item>
-              ))}
+                    aria-current={isActive(item) ? "page" : undefined}
+                  >
+                    {item.label}
+                  </Sidebar.Item>
+                ))}
+              </div>
+            </Sidebar.ItemGroup>
+          </Sidebar.Items>
+        </Sidebar>
+      </div>
+
+      {/* Mobile Top Navigation */}
+      <div
+        className="
+                md:hidden fixed top-0 left-0 right-0 
+                bg-white dark:bg-gray-800 
+                border-b border-gray-200 dark:border-gray-700 
+                z-10 h-16 overflow-hidden
+              "
+      >
+        <div className="flex items-center h-full px-4">
+          {/* Logo */}
+          {logoSrc && (
+            <div className="flex-shrink-0 mr-4">
+              <img src={logoSrc} alt="Logo" className="h-8 w-auto" />
             </div>
-          </Sidebar.ItemGroup>
-        </Sidebar.Items>
-      </Sidebar>
-      <div className="flex-1 p-6 overflow-auto bg-[var(--color-bg)] text-[var(--color-text)] ml-64">
+          )}
+          {/* Navigation Items */}
+          <div className="flex flex-1 justify-around items-center">
+            {items.map((item) => (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                className={`
+                        flex items-center justify-center
+                        ${
+                          isActive(item)
+                            ? "text-blue-600 dark:text-blue-500"
+                            : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300"
+                        }
+                      `}
+              >
+                {item.icon && <item.icon className="w-6 h-6" />}
+              </NavLink>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div
+        className={`
+          flex-1 
+          md:ml-64 
+          bg-[var(--color-bg)] 
+          text-[var(--color-text)]
+          ${className || ""}
+          mt-16 md:mt-0 overflow-hidden
+        `}
+      >
         {children}
       </div>
     </div>
