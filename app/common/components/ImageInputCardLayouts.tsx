@@ -114,7 +114,7 @@ const CardContainer: React.FC<CardContainerProps> = ({ title, children }) => {
 
 const CardLayout: React.FC<CardLayoutProps> = ({ children }) => {
   return (
-    <div className="flex  bg-gray-100 p-4">
+    <div className="flex mb-8">
       <main className="w-50% max-w-4xl mx-auto">{children}</main>
     </div>
   );

@@ -1,4 +1,5 @@
-import { Button, ToggleSwitch } from "flowbite-react";
+import {ToggleSwitch } from "flowbite-react";
+import { Button } from '@/components/ui/button';
 import React, { useState } from "react";
 import {
   FormContainer,
@@ -10,19 +11,19 @@ const PaymentSetting = () => {
   const [switch1, setSwitch1] = useState(false);
   return (
     <FormContainer
-      title="Payment Setting"
       description="Edit your payment setting"
     >
       <form action="">
         <FormGrid>
           <div className="space-y-6">
-            <FormField label="Currency" id="currency" defaultValue="NPR" />
+            <FormField label="Currency" id="currency" defaultValue="NPR" name=""/>
           </div>
           <div className="space-y-6">
             <FormField
               label="Currency Symbol"
               id="currency-symbol"
               defaultValue="Rs."
+              name=""
             />
           </div>
         </FormGrid>

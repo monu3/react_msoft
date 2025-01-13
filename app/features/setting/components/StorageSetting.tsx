@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button';
 import React, { useState } from "react";
 import {
   FormLayout,
@@ -45,7 +46,6 @@ const StorageSettings: React.FC = () => {
   return (
     <FormLayout>
       <FormContainer
-        title="Storage Settings"
         description="Configure your file storage options and upload limits."
       >
         <FormGrid>
@@ -109,18 +109,22 @@ const StorageSettings: React.FC = () => {
               type="number"
               placeholder="Enter max upload size"
               defaultValue={maxUploadSize.toString()}
+              name=""
               required
             />
           </div>
         </FormGrid>
 
         <div className="mt-6">
-          <button
+          {/* <button
             onClick={handleSaveChanges}
             className="px-6 py-2 bg-orange-500 text-white rounded-lg shadow hover:bg-orange-600"
           >
             Save Changes
-          </button>
+          </button> */}
+          <Button  onClick={handleSaveChanges}>
+            Save Changes
+          </Button>
         </div>
       </FormContainer>
     </FormLayout>
