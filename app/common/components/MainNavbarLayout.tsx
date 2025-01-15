@@ -153,7 +153,7 @@ const MainNavbarLayout: React.FC<MainNavbarLayoutProps> = ({
                     no-underline text-base
                     ${
                       isActive(item)
-                        ? "bg-text text-white hover:bg-text-500 hover:text-white"
+                        ? "bg-text text-white hover:bg-gray-200 hover:text-white"
                         : "text-gray-600 hover:bg-gray-200 hover:text-gray-900"
                     }
                     dark:${

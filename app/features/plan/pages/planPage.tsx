@@ -55,12 +55,12 @@ const PlanPage: React.FC<PlansProps> = ({ plans = [] }) => {
 
   return (
     <BreadcrumbLayouts breadcrumbItems={breadcrumbs.planRequest}>
-      <div className="dark:bg-gray-900 dark:text-text">
+      <div className="dark:bg-bg dark:text-text">
         
           <AddPlan onAddPlan={handleAddPlan}/>
 
 
-        <div className="relative isolate bg-white dark:bg-gray-800">
+        <div className="relative isolate bg-white dark:bg-bg">
           <div className="mx-auto max-w-4xl text-center">
             <h2 className="text-base font-semibold text-text">Pricing</h2>
             <p className="mt-2 text-xl font-semibold tracking-tight text-gray-900 sm:text-2xl dark:text-gray-200">
