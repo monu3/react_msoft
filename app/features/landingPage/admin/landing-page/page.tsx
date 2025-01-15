@@ -48,7 +48,7 @@ const SECTIONS = [
     id: "trusted",
     title: "Trusted Company",
     description: "Add and update trusted company logos.",
-    component: TrustedAdmin ,
+    component: TrustedAdmin,
     buttonText: "Manage Trust",
     maxWidth: "4xl",
   },
@@ -88,6 +88,7 @@ const SECTIONS = [
 
 export default function AdminDashboard() {
   const [openSection, setOpenSection] = useState<string | null>(null);
+  const isPreview = openSection === "preview";
 
   return (
     <div className="p-6">
@@ -95,7 +96,7 @@ export default function AdminDashboard() {
         <h1 className="text-2xl md:text-3xl font-bold text-[var(--color-text)] mb-4 md:mb-0">
           Landing Page Management
         </h1>
-        <Button
+        {/* <Button
           color="success"
           onClick={() =>
             setOpenSection(openSection === "preview" ? null : "preview")
@@ -103,6 +104,24 @@ export default function AdminDashboard() {
           className="w-full md:w-auto"
         >
           {openSection === "preview" ? (
+            <>
+              <LuEyeOff className="mr-2 h-5 w-5" />
+              Close Preview
+            </>
+          ) : (
+            <>
+              <LuEye className="mr-2 h-5 w-5" />
+              Preview Landing Page
+            </>
+          )}
+        </Button> */}
+
+        <Button
+          color="success"
+          onClick={() => setOpenSection(isPreview ? null : "preview")}
+          className="w-full md:w-auto"
+        >
+          {isPreview ? (
             <>
               <LuEyeOff className="mr-2 h-5 w-5" />
               Close Preview
@@ -135,9 +154,32 @@ export default function AdminDashboard() {
 
       {SECTIONS.map((section) => {
         const SectionComponent = section.component;
-        const isPreview = section.id === "preview";
+        // const isPreview = section.id === "preview";
 
         return (
+          // <Dialog
+          //   key={section.id}
+          //   open={openSection === section.id}
+          //   onOpenChange={(open) => setOpenSection(open ? section.id : null)}
+          // >
+          //   <DialogContent
+          //     className={`max-w-${section.maxWidth} ${
+          //       isPreview ? "h-[90vh]" : ""
+          //     }`}
+          //   >
+          //     <DialogHeader>
+          //       <DialogTitle>{section.title}</DialogTitle>
+          //     </DialogHeader>
+          //     <div
+          //       className={
+          //         isPreview ? "overflow-auto h-full scrollbar-hidden" : ""
+          //       }
+          //     >
+          //       <SectionComponent />
+          //     </div>
+          //   </DialogContent>
+          // </Dialog>
+
           <Dialog
             key={section.id}
             open={openSection === section.id}
@@ -145,14 +187,25 @@ export default function AdminDashboard() {
           >
             <DialogContent
               className={`max-w-${section.maxWidth} ${
-                isPreview ? "h-[90vh]" : ""
+                section.id === "preview" ? "h-[90vh]" : ""
               }`}
             >
               <DialogHeader>
                 <DialogTitle>{section.title}</DialogTitle>
               </DialogHeader>
-              <div className={isPreview ? "overflow-auto h-full scrollbar-hidden" : ""}>
-                <SectionComponent />
+              <div
+                className={
+                  section.id === "preview"
+                    ? "overflow-auto h-full scrollbar-hidden"
+                    : ""
+                }
+              >
+                {/* Pass previewMode as a prop when rendering the LandingPage */}
+                {section.id === "preview" ? (
+                  <SectionComponent previewMode={false} />
+                ) : (
+                  <SectionComponent />
+                )}
               </div>
             </DialogContent>
           </Dialog>

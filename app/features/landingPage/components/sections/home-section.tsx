@@ -26,7 +26,7 @@ export function HomeSection() {
   }, []);
 
   return (
-    <section className="py-20 px-4 md:px-6 bg-background">
+    <section className="py-20 px-4 md:px-6 bg-blue-50 mt-10">
       <div className="container mx-auto max-w-7xl">
         <div className="grid gap-8 md:grid-cols-2 items-center">
           <div className="space-y-6">
