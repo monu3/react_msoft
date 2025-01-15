@@ -17,6 +17,7 @@ import CacheSettings from "../components/CacheSettings";
 import SeoSetting from "../components/SeoSetting";
 import CookieSetting from "../components/CookieSetting";
 import ChatGptSetting from "../components/ChatGptSetting";
+import { DialogDescription } from "@radix-ui/react-dialog";
 
 // Define section configuration
 const SECTIONS = [
@@ -26,7 +27,7 @@ const SECTIONS = [
     description: "Manage your brand settings",
     component: BrandSetting,
     buttonText: 'Edit the brands',
-    maxWidth: '4xl'
+    maxWidth: '2xl'
   },
   {
     id: 'email',
@@ -34,7 +35,7 @@ const SECTIONS = [
     description: 'Add or edit Email.',
     component: EmailSettingsForm,
     buttonText: 'Manage Email Setting',
-    maxWidth: '4xl'
+    maxWidth: '2xl'
   },
   {
     id: 'pusher',
@@ -42,7 +43,7 @@ const SECTIONS = [
     description: 'Change the pusher setting',
     component: PusherSettings,
     buttonText: 'Manage Pusher',
-    maxWidth: '4xl'
+    maxWidth: '2xl'
   },
   {
     id: 'payment',
@@ -50,7 +51,7 @@ const SECTIONS = [
     description: 'Configure your payment method',
     component: PaymentSetting,
     buttonText: 'Manage Payment Method',
-    maxWidth: '4xl'
+    maxWidth: '2xl'
   },
   {
     id: 'ReCaptcha',
@@ -136,8 +137,11 @@ export default function AdminDashboard() {
             <DialogContent className={`max-w-${section.maxWidth}`}>
               <DialogHeader>
                 <DialogTitle>{section.title}</DialogTitle>
+                <DialogDescription>{section.description}</DialogDescription>
               </DialogHeader>
+              <div className="h-80 overflow-scroll scrollbar-hidden">
               <SectionComponent />
+              </div>
             </DialogContent>
           </Dialog>
         );
