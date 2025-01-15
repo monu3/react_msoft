@@ -2,10 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router";
 
 export function HomeSection() {
-  const navigate = useNavigate();
   const [data, setData] = useState({
     offerText: "70% Special Offer",
     heading: "CRMGo SaaS - Projects, Accounting, Leads, Deals & HRM Tool",
@@ -46,15 +44,6 @@ export function HomeSection() {
                   Buy Now
                 </Button>
               </a>
-
-              {/* Get Started Button */}
-              <Button
-                size="lg"
-                variant="secondary"
-                onClick={() => navigate("/dashboard")} // Navigate to /monuhome route
-              >
-                Get Started
-              </Button>
             </div>
             <div className="text-muted-foreground">{data.trustedBy}</div>
           </div>
