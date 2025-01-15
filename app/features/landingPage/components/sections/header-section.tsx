@@ -22,16 +22,16 @@ export function HeaderSection({ previewMode }: { previewMode?: boolean }) {
 
   return (
     <NavigationMenu className={`${previewMode ? "hidden" : "block"}`}>
-      <div className="flex items-center justify-between w-full  gap-10 px-44 py-4 bg-blue-50 shadow-md mb-3">
+      <div className="flex items-center justify-between w-full gap-10  py-4 bg-blue-50 shadow-md mb-3">
         {/* Leftmost Logo */}
         <a>
-          <img src="/assets/logo.png" alt="Logo" className="h-12 w-25" />
+          <img src="/assets/logo.png" alt="Logo" className="h-12 w-25 ml-44" />
         </a>
 
         {/* Center Navigation */}
         <NavigationMenuList className="flex space-x-8">
           {/* <NavigationMenuItem>
-            {/* <NavigationMenuTrigger className="text-gray-700 hover:text-blue-600">
+            <NavigationMenuTrigger className="text-gray-700 hover:text-blue-600">
               Products
             </NavigationMenuTrigger>
             <NavigationMenuContent>
@@ -55,8 +55,8 @@ export function HeaderSection({ previewMode }: { previewMode?: boolean }) {
                   Details about Product 3.
                 </ListItem>
               </ul>
-            </NavigationMenuContent> */}
-          {/* </NavigationMenuItem> */} 
+            </NavigationMenuContent>
+          </NavigationMenuItem>  */}
           <NavigationMenuItem>
             <NavigationMenuLink
               className="text-gray-700 hover:text-blue-600"
@@ -83,10 +83,10 @@ export function HeaderSection({ previewMode }: { previewMode?: boolean }) {
           </NavigationMenuItem>
         </NavigationMenuList>
 
-        {/* Rightmost Get Started Button */}
+        {/* {/* Rightmost Get Started Button */}
         <button
-          onClick={() => handleNavigation("/get-started")}
-          className="rounded-md bg-blue-600 px-80 py-2 text-white hover:bg-blue-700"
+          onClick={() => handleNavigation("/dashboard")}
+          className="rounded-md bg-blue-600 py-2 text-white hover:bg-blue-700 mr-48"
         >
           Get Started
         </button>
