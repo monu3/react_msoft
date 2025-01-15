@@ -26,30 +26,29 @@ export default function PlanCard({
 }: PlanCardProps) {
   return (
     <div
-      className={classNames(
-        featured ? 'relative bg-gray-900' : 'bg-white/60',
-        'rounded-3xl p-6 ring-1 ring-gray-900/10 sm:p-8 min-h-[250px] shadow-custom' // Reduced padding for smaller card
-      )}
-    >
-      <h3
-        id={id}
-        className={classNames(
-          featured ? 'text-indigo-400' : 'text-indigo-600',
-          'text-lg font-semibold' // Reduced font size for name
-        )}
-      >
-        {name}
-      </h3>
+  className={classNames(
+    featured ? 'relative bg-gray-900 dark:bg-gray-800' : 'bg-white/60 dark:bg-gray-700',
+    'rounded-3xl p-6 ring-1 ring-gray-900/10 sm:p-8 min-h-[250px] shadow-custom'
+  )}
+>
+<h3
+  className={classNames(
+    featured ? 'text-indigo-400 dark:text-indigo-300' : 'text-indigo-600 dark:text-indigo-400',
+    'text-lg font-semibold'
+  )}
+>
+  {name}
+</h3>
       <p className="mt-3 flex items-baseline gap-x-2"> {/* Reduced top margin */}
         <span
           className={classNames(
-            featured ? 'text-white' : 'text-gray-900',
+            featured ? 'text-white' : 'text-gray-800',
             'text-4xl font-semibold tracking-tight' // Reduced font size for price
           )}
         >
           {priceMonthly}
         </span>
-        <span className={classNames(featured ? 'text-gray-400' : 'text-gray-500', 'text-base')}>
+        <span className={classNames(featured ? 'text-gray-400' : 'text-gray-700', 'text-base')}>
           /month
         </span>
       </p>
@@ -59,7 +58,7 @@ export default function PlanCard({
       <ul
         role="list"
         className={classNames(
-          featured ? 'text-gray-300' : 'text-gray-600',
+          featured ? 'text-gray-900' : 'text-gray-500',
           'mt-6 space-y-2 text-sm sm:mt-8' // Reduced space and text size for features
         )}
       >

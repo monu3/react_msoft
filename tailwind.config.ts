@@ -25,6 +25,7 @@ export default {
       "brand-light": "var(--color-brand-light)",
       text: "var(--color-text)",
       bg: "var(--color-bg)",
+      gray: "var(--color-gray)",
       transparent: "transparent",
       current: "currentColor",
     },
