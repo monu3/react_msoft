@@ -17,6 +17,7 @@ type LandingPageProps = {
 
 
 export default function LandingPage({ previewMode }: LandingPageProps) {
+  console.log(previewMode);
   return (
     <main className="min-h-screen">
       {!previewMode && <HeaderSection />}
