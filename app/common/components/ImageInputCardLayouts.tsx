@@ -28,7 +28,6 @@ const CardInputFile: React.FC<CardInputFileProps> = ({ onFileSelect, accept = "i
           <p className="mb-2 text-sm text-gray-500">
             <span className="font-semibold">Choose file here</span>
           </p>
-          <p className="text-xs text-gray-500">SVG, PNG, JPG or GIF</p>
         </div>
         <input
           type="file"
