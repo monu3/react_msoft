@@ -6,20 +6,29 @@ import { PricingSection } from "~/features/landingPage/components/sections/prici
 import { FAQSection } from "~/features/landingPage/components/sections/faq-section";
 import { TestimonialsSection } from "~/features/landingPage/components/sections/testimonials-section";
 import { Outlet } from "react-router";
-import {TrustSection} from "~/features/landingPage/components/sections/trusted-section";
+import { TrustSection } from "~/features/landingPage/components/sections/trusted-section";
+import { HeaderSection } from "../components/sections/header-section";
 
-export default function LandingPage() {
+
+
+type LandingPageProps = {
+  previewMode?: boolean; // Optional prop to enable preview mode
+};
+
+
+export default function LandingPage({ previewMode }: LandingPageProps) {
   return (
-      <main className="min-h-screen">
-        <HomeSection />
-        <FeaturesSection />
-        <TrustSection />
-        <DiscoverSection />
-        <ScreenshotsSection />
-        <PricingSection />
-        <FAQSection />
-        <TestimonialsSection />
-        <Outlet/>
-      </main>
+    <main className="min-h-screen">
+      {!previewMode && <HeaderSection />}
+      <HomeSection />
+      <FeaturesSection />
+      <TrustSection />
+      <DiscoverSection />
+      <ScreenshotsSection />
+      <PricingSection />
+      <FAQSection />
+      <TestimonialsSection />
+      <Outlet />
+    </main>
   );
 }
