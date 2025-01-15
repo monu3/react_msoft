@@ -1,79 +1,9 @@
-// import React from "react";
-
-// type FormProps = {
-//   onAddLogo: (logo: { alt: string; src: string }) => void;
-// };
-
-// export default function TrustedAdmin({ onAddLogo }: FormProps) {
-//   const handleAddLogo = (event: React.FormEvent<HTMLFormElement>) => {
-//     event.preventDefault();
-//     const form = event.target as HTMLFormElement;
-//     const newAlt = (form.elements.namedItem("alt") as HTMLInputElement).value;
-//     const newSrc = (form.elements.namedItem("src") as HTMLInputElement).value;
-
-//     if (newAlt && newSrc) {
-//       onAddLogo({ alt: newAlt, src: newSrc });
-//       form.reset(); // Clear form inputs
-//     }
-//   };
-
-//   return (
-//     <div className="mt-16">
-//       <h3 className="text-center text-lg font-semibold text-gray-900 mb-4">
-//         Add a New Logo
-//       </h3>
-//       <form
-//         onSubmit={handleAddLogo}
-//         className="mx-auto max-w-md bg-gray-100 p-6 rounded-lg shadow-md"
-//       >
-//         <div className="mb-4">
-//           <label
-//             htmlFor="alt"
-//             className="block text-sm font-medium text-gray-700"
-//           >
-//             Logo Name (Alt Text):
-//           </label>
-//           <input
-//             type="text"
-//             id="alt"
-//             name="alt"
-//             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-//             required
-//           />
-//         </div>
-//         <div className="mb-4">
-//           <label
-//             htmlFor="src"
-//             className="block text-sm font-medium text-gray-700"
-//           >
-//             Logo URL:
-//           </label>
-//           <input
-//             type="url"
-//             id="src"
-//             name="src"
-//             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-//             required
-//           />
-//         </div>
-//         <button
-//           type="submit"
-//           className="w-full inline-flex justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-//         >
-//           Add Logo
-//         </button>
-//       </form>
-//     </div>
-//   );
-// }
-
 // TrustedAdmin.tsx
 "use client";
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 
 type Logo = {
   alt: string;
