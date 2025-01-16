@@ -69,17 +69,7 @@ export default function HomeSectionAdmin() {
             required
           />
         </div>
-
-        <div>
-          <label className="block text-sm font-medium mb-1">Buy Now Link</label>
-          <Input
-            name="buyNowLink"
-            type="url"
-            placeholder="https://..."
-            required
-          />
-        </div>
-
+        
         <div>
           <label className="block text-sm font-medium mb-1">
             Banner Image URL

@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 
 export function DiscoverSection() {
   return (
-    <section className="py-20 px-4 md:px-6 bg-background">
+    <section className="py-20 px-4 md:px-6 bg-muted/80">
       <div className="container mx-auto max-w-7xl">
         <div className="text-center space-y-4 mb-12">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
