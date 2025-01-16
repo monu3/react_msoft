@@ -143,6 +143,7 @@ export default function AdminDashboard() {
             key={section.id}
             open={openSection === section.id}
             onOpenChange={(open) => setOpenSection(open ? section.id : null)}
+          
           >
             <DialogContent
               className={`max-w-${section.maxWidth} ${
