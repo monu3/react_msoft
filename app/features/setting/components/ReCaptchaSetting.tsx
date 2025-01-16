@@ -1,37 +1,55 @@
-import {ToggleSwitch } from "flowbite-react";
+import React, { useState } from 'react';
+import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import React, { useState } from "react";
-import { FormContainer, FormField, FormGrid } from "~/common/components/FormLayout";
+import { Switch } from '@/components/ui/switch';
 
 const ReCaptchaSetting = () => {
-  const [switch1, setSwitch1] = useState(true);
+  const [isEnabled, setIsEnabled] = useState(true);
+
   return (
-    <FormContainer
-      description=""
-    >
+    <div>
       <form action="">
-        <FormGrid>
-          <div className="space-y-6">
-            <FormField label="Google ReCaptcha Key" id="recaptcha" defaultValue="" placeholder="Enter Google ReCaptcha Key" name=""/>
-          </div>
-          <div className="space-y-6">
-            <FormField
-              label="Google ReCaptcha Secret"
-              id=""
+        <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-6">
+          <div>
+            <label htmlFor="recaptcha" className="block font-medium mb-2">
+              Google ReCaptcha Key
+            </label>
+            <Input
+              id="recaptcha"
+              name="recaptcha"
+              placeholder="Enter Google ReCaptcha Key"
               defaultValue=""
-              placeholder="Enter Google ReCaptcha Secret"
-              name=""
             />
           </div>
-        </FormGrid>
-        <div className="flex mt-10"> 
-          <ToggleSwitch checked={switch1} onChange={setSwitch1} label="Enable"/>
+
+          <div>
+            <label htmlFor="recaptcha-secret" className="block font-medium mb-2">
+              Google ReCaptcha Secret
+            </label>
+            <Input
+              id="recaptcha-secret"
+              name="recaptcha-secret"
+              placeholder="Enter Google ReCaptcha Secret"
+              defaultValue=""
+            />
+          </div>
         </div>
-        <div className="flex flex-wrap items-center justify-end gap-4 my-4">
+
+        <div className="flex items-center gap-2 mt-10">
+          <Switch
+            checked={isEnabled}
+            onCheckedChange={setIsEnabled}
+          />
+          <label htmlFor="recaptcha-enable" className="text-sm font-medium">
+            Enable
+          </label>
+        </div>
+
+        <div className="mt-6">
           <Button>Save Changes</Button>
         </div>
       </form>
-    </FormContainer>
+    </div>
   );
 };
 
