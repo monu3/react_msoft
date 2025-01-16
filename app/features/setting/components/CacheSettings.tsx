@@ -27,7 +27,7 @@ const CacheSettings = () => {
           <div className='ml-2 border border-gray-300 rounded-md inline'>MB</div>
           </div>
           </div>
-          <div className='flex justify-end'>
+          <div>
           <Button onClick={clearCache}>Clear Cache</Button>
           </div>
         </div>

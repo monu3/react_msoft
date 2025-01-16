@@ -26,7 +26,7 @@ const SeoSetting = () => {
         action=""
         id="seo-setting"
       >
-        <div className="grid gap-10 lg:grid-cols-2 sm:grid-cols-1">
+        <div className="grid lg:grid-cols-2 sm:grid-cols-1">
         <div className="flex flex-col gap-4">
           <div>
           <label htmlFor="meta-keyword">Meta Keywords</label>
