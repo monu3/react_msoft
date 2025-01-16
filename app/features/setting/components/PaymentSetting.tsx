@@ -1,45 +1,52 @@
-import {ToggleSwitch } from "flowbite-react";
+import React, { useState } from 'react';
+import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import React, { useState } from "react";
-import {
-  FormContainer,
-  FormField,
-  FormGrid,
-} from "~/common/components/FormLayout";
+import { Switch } from '@/components/ui/switch';
 
 const PaymentSetting = () => {
-  const [switch1, setSwitch1] = useState(false);
+  const [esewaEnabled, setEsewaEnabled] = useState(false);
+
   return (
-    <FormContainer
-      description="Edit your payment setting"
-    >
+    <div className="p-6">
       <form action="">
-        <FormGrid>
-          <div className="space-y-6">
-            <FormField label="Currency" id="currency" defaultValue="NPR" name=""/>
-          </div>
-          <div className="space-y-6">
-            <FormField
-              label="Currency Symbol"
-              id="currency-symbol"
-              defaultValue="Rs."
-              name=""
+        <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-6">
+          <div>
+            <label htmlFor="currency" className="block font-medium mb-2">
+              Currency
+            </label>
+            <Input
+              id="currency"
+              name="currency"
+              defaultValue="NPR"
             />
           </div>
-        </FormGrid>
-        <div className="flex justify-between mt-4 rounded-md p-3 bg-brand-light">
-          <p>ESEWA</p>
-          <ToggleSwitch
-            checked={switch1}
-            onChange={setSwitch1} 
+
+          <div>
+            <label htmlFor="currency-symbol" className="block font-medium mb-2">
+              Currency Symbol
+            </label>
+            <Input
+              id="currency-symbol"
+              name="currency-symbol"
+              defaultValue="Rs."
+            />
+          </div>
+        </div>
+
+        <div className="flex items-center justify-between mt-6 p-4 bg-blue-50 rounded-lg">
+          <span className="font-medium">ESEWA</span>
+          <Switch
+            checked={esewaEnabled}
+            onCheckedChange={setEsewaEnabled}
           />
         </div>
-        <div className="flex flex-wrap items-center justify-end gap-4 my-4">
-          <Button color="warning">Save Changes</Button>
+
+        <div className="mt-6">
+          <Button>Save Changes</Button>
         </div>
       </form>
-    </FormContainer>
-  )
-}
+    </div>
+  );
+};
 
 export default PaymentSetting;
