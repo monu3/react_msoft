@@ -22,7 +22,7 @@ export function HeaderSection({ previewMode }: { previewMode?: boolean }) {
 
   return (
     <NavigationMenu className={`${previewMode ? "hidden" : "block"}`}>
-      <div className="flex items-center justify-between w-full gap-10  py-4 bg-blue-50 shadow-md mb-3">
+      <div className="flex items-center justify-between w-full gap-10  py-4 bg-blue-50 shadow-md">
         {/* Leftmost Logo */}
         <a>
           <img src="/assets/logo.png" alt="Logo" className="h-12 w-25 ml-44" />
