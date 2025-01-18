@@ -1,3 +1,28 @@
+/**
+ * CompanyList Component
+ *
+ * This component displays a list of companies with options to view, add, edit, and delete.
+ * It fetches the company data from a backend service and allows interaction with each company's details.
+ *
+ * State:
+ * - companies: The list of companies.
+ * - isLoading: A boolean indicating whether the companies are loading.
+ * - error: Any error messages while fetching data.
+ * - isModalOpen: A boolean to toggle the "Add Company" modal.
+ * - selectedCompany: The company that is selected for viewing/editing.
+ *
+ * Effects:
+ * - useEffect to fetch companies from the service on component mount.
+ *
+ * Functions:
+ * - fetchCompanies: Fetches company data from the backend.
+ * - handleAddCompany: Handles adding a new company.
+ * - handleOpenCompanyDetails: Opens the modal to view company details.
+ * - handleCloseModal: Closes the modal.
+ * - handleDeleteCompany: Deletes a company by its ID.
+ * - handleEditCompany: Updates a company's details.
+ */
+
 import React, { useState, useEffect } from "react";
 import { Button, Spinner, Card } from "flowbite-react";
 import { HiPlus, HiMail, HiPhone, HiOfficeBuilding } from "react-icons/hi";
@@ -6,6 +31,9 @@ import CompanyDetailModal from "./CompanyDetailModal";
 import type { Company } from "../types/company";
 import { companyService } from "../service/CompanyService";
 
+/**
+ * CompanyList Component implementation
+ */
 const CompanyList: React.FC = () => {
   const [companies, setCompanies] = useState<Company[]>([]);
   const [isLoading, setIsLoading] = useState(true);
