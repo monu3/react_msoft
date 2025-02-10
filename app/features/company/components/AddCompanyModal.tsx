@@ -1,3 +1,15 @@
+/**
+ * AddCompanyModal Component
+ *
+ * This component displays a modal for adding a new company.
+ * It contains a form with fields for company name, email, password, phone, address, city, and state.
+ * It includes a submit button for saving the new company data.
+ *
+ * Props:
+ * - onClose: A function to close the modal.
+ * - onSubmit: A function to handle the form submission with new company data.
+ */
+
 import React, { useState } from "react";
 import { Button, Modal, TextInput, Label } from "flowbite-react";
 import type { Company } from "../types/company";
@@ -9,6 +21,9 @@ interface AddCompanyModalProps {
   ) => void;
 }
 
+/**
+ * AddCompanyModal Component implementation
+ */
 const AddCompanyModal: React.FC<AddCompanyModalProps> = ({
   onClose,
   onSubmit,
