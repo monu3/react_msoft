@@ -5,8 +5,10 @@ import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 import path from "path";
 
-
 export default defineConfig({
+  server: {
+    port: 5174,
+  },
   css: {
     postcss: {
       plugins: [tailwindcss, autoprefixer],
