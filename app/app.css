@@ -78,7 +78,6 @@ td {
   --color-bg: #ffffff;
   --color-text: #181818;
 
-
   /* Brand colors */
   --color-primary: #f9ac26; /* Orange as requested */
   --color-secondary: #56b7db;
@@ -101,9 +100,9 @@ td {
 /* Dark mode color variables (default for dark preference) */
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-bg:#6666ca;
+    --color-bg: #111121;
     --color-text: #ffffff;
-    --color-gray: #1F2937;
+    --color-gray: #1f2937;
 
     --color-primary: #ff8f00; /* Deeper orange for dark mode */
     --color-secondary: #2b9cbf;

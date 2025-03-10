@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Breadcrumb } from "flowbite-react";
+import { Link } from "react-router";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -20,7 +21,11 @@ const Layout: React.FC<LayoutProps> = ({ children, breadcrumbItems }) => {
               href={item.href}
               className="text-[var(--color-text)]"
             >
-              {item.label}
+              {item.href ? (
+                <Link to={item.href}>{item.label}</Link>
+              ) : (
+                item.label
+              )}
             </Breadcrumb.Item>
           ))}
         </Breadcrumb>
