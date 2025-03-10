@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/select";
 import { Loader2, Save } from "lucide-react";
 import { mockApi } from "./utils/mockApi";
-import type { Feature } from "./utils/fakeData";
+import { FEATURE_TIERS, type Feature } from "./utils/fakeData";
 
 export default function FeatureModelForm() {
   const [formData, setFormData] = useState<Omit<Feature, "id">>({
@@ -22,7 +22,7 @@ export default function FeatureModelForm() {
     isEnabled: false,
     icon: "",
     priority: 1,
-    featureTier: "free",
+    featureTier: FEATURE_TIERS.FREE,
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -42,7 +42,7 @@ export default function FeatureModelForm() {
         isEnabled: false,
         icon: "",
         priority: 1,
-        featureTier: "free",
+        featureTier: FEATURE_TIERS.FREE,
       });
     } catch (error) {
       setMessage("Failed to add feature.");
@@ -85,11 +85,7 @@ export default function FeatureModelForm() {
             onValueChange={(value) =>
               setFormData({
                 ...formData,
-                featureTier: value as
-                  | "free"
-                  | "basic"
-                  | "premium"
-                  | "special-request",
+                featureTier: value as keyof typeof FEATURE_TIERS,
               })
             }
           >
@@ -97,10 +93,12 @@ export default function FeatureModelForm() {
               <SelectValue placeholder="Select tier" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="free">Free</SelectItem>
-              <SelectItem value="basic">Basic</SelectItem>
-              <SelectItem value="premium">Premium</SelectItem>
-              <SelectItem value="special-request">Special Request</SelectItem>
+              <SelectItem value={FEATURE_TIERS.FREE}>Free</SelectItem>
+              <SelectItem value={FEATURE_TIERS.BASIC}>Basic</SelectItem>
+              <SelectItem value={FEATURE_TIERS.PREMIUM}>Premium</SelectItem>
+              <SelectItem value={FEATURE_TIERS.SPECIAL_REQUEST}>
+                Special Request
+              </SelectItem>
             </SelectContent>
           </Select>
         </div>

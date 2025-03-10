@@ -2,18 +2,17 @@ import { fakeFeatures, type Feature } from "./fakeData";
 
 const LOCAL_STORAGE_KEY = "features";
 
+let features: Feature[] = [...fakeFeatures];
 export const mockApi = {
   getFeatures: (): Promise<Feature[]> => {
     return new Promise((resolve) => {
       setTimeout(() => {
-
-        if (!localStorage.getItem(LOCAL_STORAGE_KEY)) {
-          localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(fakeFeatures));
-        }
-        const features: Feature[] = JSON.parse(
+        // Fetch features from localStorage if available
+        const storedFeatures: Feature[] = JSON.parse(
           localStorage.getItem(LOCAL_STORAGE_KEY) || "[]"
         );
-        resolve(features);
+        // Merge fakeFeatures with any features stored in localStorage
+        resolve([...features, ...storedFeatures]); // Return merged list (fake data + stored data)
       }, 500);
     });
   },
